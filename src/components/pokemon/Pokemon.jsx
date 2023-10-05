@@ -40,7 +40,7 @@ console.log(imageId);
 </Link>
         </div>
         {pokemon.map((p, index) =>
-        <div style={{display: "inline-flex", margin: "20px"}} key={index}>
+        <div className="pokeContainer" style={{display: "inline-flex", margin: "20px"}} key={index}>
         <Link to={`/pokemon/${p.id}`} element={<SinglePokemon />}>
         <Card 
         hoverable
