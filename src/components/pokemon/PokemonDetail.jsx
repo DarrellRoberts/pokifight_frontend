@@ -5,7 +5,7 @@ export default function PokemonDetail({ name }) {
     const [pokemon, setPokemon] = useState([])
     const { id, info } = useParams()
     const fetchData = async () => {
-        const data = await fetch(`https://pokifight-backend.onrender.com/api/pokemon/${id}/${info}`)
+        const data = await fetch(`https://pokemon-backend-ydlf.onrender.com/api/pokemon/${id}/${info}`)
         const res = await data.json();
         setPokemon(res);
         }
@@ -19,19 +19,19 @@ export default function PokemonDetail({ name }) {
         <br/> <NavLink to={`/pokemon/${id}`}> Pokemon Overview</NavLink>
         <ul>
         {/* Base */}
-        {pokemon.base ? <li>Health: {pokemon.base.HP}</li> : null}
-        {pokemon.base ? <li>Attack: {pokemon.base.Attack}</li> : null}
-        {pokemon.base ? <li>Defense: {pokemon.base.Defense}</li> : null}
-        {pokemon.base ? <li>Special Attack: {pokemon.base["Sp. Attack"]}</li> : null}
-        {pokemon.base ? <li>Special Defense: {pokemon.base["Sp. Defense"]}</li> : null}
-        {pokemon.base ? <li>Speed: {pokemon.base.Speed}</li> : null}
+        {info === "base" ? <li>Health: {pokemon.HP}</li> : null}
+        {info === "base" ? <li>Attack: {pokemon.Attack}</li> : null}
+        {info === "base" ? <li>Defense: {pokemon.Defense}</li> : null}
+        {info === "base" ? <li>Special Attack: {pokemon["Sp. Attack"]}</li> : null}
+        {info === "base" ? <li>Special Defense: {pokemon["Sp. Defense"]}</li> : null}
+        {info === "base" ? <li>Speed: {pokemon.Speed}</li> : null}
         {/* Type */}
-        {pokemon.type ? <li>Type: {pokemon.type}</li> : null}
+        {info === "type" ? <li>Type: {pokemon}</li> : null}
         {/* Name */}
-        {pokemon.name ? <li>English Name: {pokemon.name.english}</li> : null}
-        {pokemon.name ? <li>French Name: {pokemon.name.french}</li> : null}
-        {pokemon.name ? <li>Chinese Name: {pokemon.name.chinese}</li> : null}
-        {pokemon.name ? <li>Japanese Name: {pokemon.name.japanese}</li> : null}
+        {info === "name" ? <li>English Name: {pokemon.english}</li> : null}
+        {info === "name" ? <li>French Name: {pokemon.french}</li> : null}
+        {info === "name" ? <li>Chinese Name: {pokemon.chinese}</li> : null}
+        {info === "name" ? <li>Japanese Name: {pokemon.japanese}</li> : null}
         </ul>
         </>
     )
