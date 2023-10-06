@@ -22,8 +22,8 @@ export default function Pokemon({ setSearchBar, searchBar }) {
       );
       const res = await data.json();
       // for testing purposes the number limited (memory consuming)
-      // const limited = res.slice(0, 10);
-      setPokemon(res);
+      const limited = res.slice(0, 10);
+      setPokemon(limited);
     }
   };
 
@@ -32,14 +32,16 @@ export default function Pokemon({ setSearchBar, searchBar }) {
   }, [searchBar]);
 
   return (
-    <div style={{ backgroundColor: "black" }}>
-      <Randomiser pokemon={pokemon}/>
+    <div style={{ backgroundColor: "black", color: "red" }}>
+      <SearchBar setSearchBar={setSearchBar} />
+      <Randomiser pokemon={pokemon} />
       {pokemon.length > 0
         ? pokemon.map((p, index) => (
-        <div style={{ display: "inline-flex", margin: "20px" }} key={index}>
-          <PokemonView  p={p} />
-        </div>
-      ))}
+            <div style={{ display: "inline-flex", margin: "20px" }} key={index}>
+              <PokemonView p={p} />
+            </div>
+          ))
+        : "No result found"}
     </div>
   );
 }
