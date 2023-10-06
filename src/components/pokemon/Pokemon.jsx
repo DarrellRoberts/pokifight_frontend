@@ -72,6 +72,7 @@ export default function Pokemon({ searchBar }) {
       {pokemon.map((p, index) => (
         <div style={{ display: "inline-flex", margin: "20px" }} key={index}>
           <PokemonView p={p} />
+
         </div>
       ))}
     </div>
