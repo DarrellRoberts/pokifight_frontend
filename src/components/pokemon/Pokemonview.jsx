@@ -5,7 +5,7 @@ import { Card } from "antd";
 function PokemonView({ p }) {
   const { Meta } = Card;
   return (
-    <div style={{ display: "inline-flex", margin: "20px" }}>
+    <div className="pokeContainer" style={{ display: "inline-flex", margin: "20px" }}>
       <Link to={`/pokemon/${p.id}`} element={<SinglePokemon />}>
         <Card
           hoverable
