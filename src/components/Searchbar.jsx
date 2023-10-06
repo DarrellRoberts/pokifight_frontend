@@ -4,13 +4,13 @@ const SearchBar = ({ setSearchBar }) => {
   const [inputValue, setValue] = useState("");
   const handleSearchBar = (e) => {
     e.preventDefault();
-    // console.log(inputValue);
     setSearchBar(inputValue);
     setValue("");
   };
 
   const handleInputChange = (e) => {
     setValue(e.target.value);
+    setSearchBar(e.target.value);
   };
 
   return (
