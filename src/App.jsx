@@ -21,7 +21,12 @@ function App() {
         {/* Homepage */}
         <Route path="/" element={<Homepage />} />
         {/* First Page */}
-        <Route path="pokemon" element={<Pokemon searchBar={searchBar} />} />
+        <Route
+          path="pokemon"
+          element={
+            <Pokemon setSearchBar={setSearchBar} searchBar={searchBar} />
+          }
+        />
         {/* Second Page */}
         <Route path="/pokemon/:id" element={<SinglePokemon />} />
         {/* Third page */}

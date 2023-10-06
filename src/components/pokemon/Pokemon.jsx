@@ -4,8 +4,9 @@ import SinglePokemon from "./SinglePokemon";
 import { Card } from "antd";
 
 import PokemonView from "./Pokemonview";
+import SearchBar from "../Searchbar";
 
-export default function Pokemon({ searchBar }) {
+export default function Pokemon({ setSearchBar, searchBar }) {
   const [pokemon, setPokemon] = useState([]);
   const [imageId, setImageId] = useState(0);
 
@@ -13,15 +14,18 @@ export default function Pokemon({ searchBar }) {
   const fetchData = async () => {
     if (searchBar) {
       const data = await fetch(
-        `https://pokemon-backend-ydlf.onrender.com/api/pokemon/${searchBar}`
+        `https://pokemon-backend-ydlf.onrender.com/api/pokemon/search?name=${searchBar}`
       );
       const res = await data.json();
-      setPokemon([res]);
+
+      setPokemon(res);
     } else {
       const data = await fetch(
         "https://pokemon-backend-ydlf.onrender.com/api/pokemon"
       );
       const res = await data.json();
+      // for testing purposes the number limited (memory consuming)
+      // const limited = res.slice(0, 10);
       setPokemon(res);
     }
   };
@@ -29,7 +33,7 @@ export default function Pokemon({ searchBar }) {
   useEffect(() => {
     fetchData();
   }, [searchBar]);
-  // console.log(pokemon.map((p) => p.name.english));
+
   const randomiser = () => {
     if (pokemon) {
       setImageId(pokemon[Math.floor(Math.random() * 810) + 1]?.id);
@@ -37,7 +41,6 @@ export default function Pokemon({ searchBar }) {
       return null;
     }
   };
-  // console.log(imageId);
   return (
     <div style={{ backgroundColor: "black" }}>
       <div
@@ -51,6 +54,7 @@ export default function Pokemon({ searchBar }) {
         className="randomiser"
       >
         <button onClick={randomiser}>Lucky Dip</button>
+        <SearchBar setSearchBar={setSearchBar} />
         <Link to={`/pokemon/${imageId}`} element={<SinglePokemon />}>
           <Card
             hoverable
@@ -69,12 +73,18 @@ export default function Pokemon({ searchBar }) {
           </Card>
         </Link>
       </div>
-      {pokemon.map((p, index) => (
-        <div style={{ display: "inline-flex", margin: "20px" }} key={index}>
-          <PokemonView p={p} />
-
-        </div>
-      ))}
+      <div className="container-temp-font">
+        {pokemon.length > 0
+          ? pokemon.map((p, index) => (
+              <div
+                style={{ display: "inline-flex", margin: "20px" }}
+                key={index}
+              >
+                <PokemonView p={p} />
+              </div>
+            ))
+          : "No result found"}
+      </div>
     </div>
   );
 }
