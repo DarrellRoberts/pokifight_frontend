@@ -28,7 +28,10 @@ function PokemonView({ p }) {
             />
           }
         >
-          <Meta title={p.name.english} description="Info" />
+          <hr/>
+          <Meta title={p.name.english} 
+          description={p.type[0]} 
+          />
         </Card>
       </Link>
     </div>
