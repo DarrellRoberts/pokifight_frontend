@@ -17,7 +17,7 @@ export default function Randomiser({ pokemon }) {
                 setShow(false);
             }, 50);
         } else {
-            return null
+            return setImageId(0);
       }
     }
 
@@ -52,7 +52,8 @@ export default function Randomiser({ pokemon }) {
             style={{ width: 220 }}
             cover={<img alt={p[imageId - 1]?.name.english} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`} />}
             >
-        <Meta title={p[imageId - 1]?.name.english} description="Info" />
+            <hr/>
+        <Meta title={p[imageId - 1]?.name.english} description={p[imageId - 1]?.type[0]} />
   </Card> 
 </Link>)
  }
