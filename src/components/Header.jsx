@@ -17,7 +17,6 @@ export default function Header({ setSearchBar }) {
         Pokemon
       </NavLink>
       <SoundPlayer soundtrackSrc={Soundtrack} />
-      <SearchBar setSearchBar={setSearchBar} />
     </>
   );
 }
