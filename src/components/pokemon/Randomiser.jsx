@@ -13,7 +13,7 @@ export default function Randomiser({ pokemon }) {
     const randomiser = () => {
         if (p) {
             setInterval(() => {
-                setImageId(p[Math.floor(Math.random() * 810) + 1]?.id)
+                setImageId(Math.floor(Math.random() * 809) + 1)
                 setShow(false);
             }, 50);
         } else {
@@ -39,7 +39,8 @@ export default function Randomiser({ pokemon }) {
             <Card 
             hoverable
             style={{ width: 220 }}
-            cover={<img alt={p[imageId - 1]?.name.english} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`} />}
+            cover={<img alt={p[imageId - 1]?.name.english} 
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`} />}
             >
         <Meta title={p[imageId - 1]?.name.english} description="Info" />
   </Card> 
