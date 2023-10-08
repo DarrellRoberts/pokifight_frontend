@@ -11,14 +11,18 @@ export default function Randomiser({ pokemon }) {
     const p = pokemon;
 
     const randomiser = () => {
+    try {
         if (p) {
             setInterval(() => {
                 setImageId(Math.floor(Math.random() * 809) + 1)
                 setShow(false);
-            }, 50);
+            }, 5000);
         } else {
             return setImageId(0);
       }
+    } catch(error) {
+        console.error(error);
+    }
     }
 
     return (
