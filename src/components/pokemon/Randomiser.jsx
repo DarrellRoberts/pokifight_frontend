@@ -11,16 +11,24 @@ export default function Randomiser({ pokemon }) {
     const p = pokemon;
 
     const randomiser = () => {
+    try {
         if (p) {
-            setInterval(() => {
-                setImageId(p[Math.floor(Math.random() * 810) + 1]?.id)
+            const Int = setInterval(() => {
+                setImageId(Math.floor(Math.random() * 809) + 1)
                 setShow(false);
-            }, 50);
+            }, 100);
+            setTimeout(() => {
+                clearInterval(Int);
+                setShow(true)
+            }, 3000)
         } else {
             return setImageId(0);
       }
+    } catch(error) {
+        console.error(error);
     }
-
+    }
+console.log(imageId)
     return (
 <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "2% 0%"}} className= "randomiser">
     {show ? (
@@ -34,29 +42,27 @@ export default function Randomiser({ pokemon }) {
         Lucky Dip
         </Button>
     </Space>) : null}
-        {show ? (
+        {imageId === 0 ? (        
         <Link>
             <Card 
             hoverable
             style={{ width: 220 }}
-            cover={<img alt={p[imageId - 1]?.name.english} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`} />}
+            cover={<img alt={p[imageId - 1]?.name.english} 
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`} />}
             >
         <Meta title={p[imageId - 1]?.name.english} description="Info" />
   </Card> 
-</Link>)
- : 
- (
-        <Link to={`/pokemon/${imageId}`} element={<SinglePokemon />} >
+</Link>) : (
+        <Link to={`/pokemon/${imageId}`} element={<SinglePokemon />}>
             <Card 
             hoverable
             style={{ width: 220 }}
-            cover={<img alt={p[imageId - 1]?.name.english} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`} />}
+            cover={<img alt={p[imageId - 1]?.name.english} 
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`} />}
             >
-            <hr/>
-        <Meta title={p[imageId - 1]?.name.english} description={p[imageId - 1]?.type[0]} />
+        <Meta title={p[imageId - 1]?.name.english} description="Info" />
   </Card> 
-</Link>)
- }
+</Link>)}
 </div>
     )
 }
