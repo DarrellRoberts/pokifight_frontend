@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PokemonDetail from "./PokemonDetail";
 import { Card } from "antd";
+import PokemonTitle from "./PokemonTitle";
 
 export default function SinglePokemon() {
   const [pokemon, setPokemon] = useState([]);
@@ -25,7 +26,9 @@ export default function SinglePokemon() {
     console.log("Pokemon object is undefined");
   }
   return (
-    <div style={{ backgroundColor: "black" }}>
+    <div style={{ backgroundColor: "black", height: "100vh" }}>
+      <div className="greyContainer" style={{backgroundColor: "rgba(100, 100, 100, 0.4)", borderRadius: "20px", width: "80%"}}>
+      <PokemonTitle pokemon = {pokemon} />
       {pokemon.name ? (
         <div
           style={{
@@ -34,10 +37,9 @@ export default function SinglePokemon() {
             padding: "20px",
           }}
         >
-          <h1>{pokemon?.name?.english}</h1>
           <Card
             hoverable
-            style={{ width: 220 }}
+            style={{ width: 300 }}
             cover={
               <img
                 alt={pokemon.name.english}
@@ -71,6 +73,7 @@ export default function SinglePokemon() {
           </Card>
         </div>
       ) : null}
+      </div>
     </div>
   );
 }
