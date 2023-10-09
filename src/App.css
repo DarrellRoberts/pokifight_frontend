@@ -55,6 +55,16 @@ h1 {
   filter: grayscale(0);
 }
 
+:where(.css-pr0fja).ant-btn-primary {
+background-color: rgb(6, 37, 211);
+}
+
+:where(.css-pr0fja).ant-input-affix-wrapper:focus, :where(.css-pr0fja).ant-input-affix-wrapper-focused {
+  border-color: rgb(6, 37, 211);
+  box-shadow: 0 10px 20px -20px rgba(6, 37, 211, 0.4), 0 30px 60px 0 rgba(6, 37, 211, 0.4), 0 50px 120px 40px rgba(6, 37, 211, 0.4);
+
+}
+
 /* need to be properly set */
 .container-temp-font {
   color: red;
