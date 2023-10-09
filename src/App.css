@@ -21,7 +21,7 @@ body {
 
 h1 {
   font-family: "Russo One";
-  text-shadow: 2px 2px 20px #ffffff;
+  text-shadow: 2px 2px 20px rgb(6, 37, 211);
 }
 
 :where(.css-pr0fja).ant-card-hoverable:hover {

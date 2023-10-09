@@ -4,6 +4,7 @@ import SinglePokemon from "./SinglePokemon";
 import Randomiser from "./Randomiser";
 import PokemonView from "./Pokemonview";
 import SearchBar from "../Searchbar";
+import PokemonTitle from "./PokemonTitle";
 
 export default function Pokemon({ setSearchBar, searchBar }) {
   const [pokemon, setPokemon] = useState([]);
@@ -32,7 +33,9 @@ export default function Pokemon({ setSearchBar, searchBar }) {
   }, [searchBar]);
 
   return (
-    <div style={{ backgroundColor: "black", color: "red" }}>
+    <div style={{ backgroundColor: "black", color: "red", display: "flex", justifyContent: "center", alignItems: "center"}}>
+      <div className="greyContainer" style={{backgroundColor: "rgba(100, 100, 100, 0.4)", borderRadius: "20px", width: "80%"}}>
+      <PokemonTitle />
       <SearchBar setSearchBar={setSearchBar} />
       <Randomiser />
       {pokemon.length > 0
@@ -42,6 +45,7 @@ export default function Pokemon({ setSearchBar, searchBar }) {
             </div>
           ))
         : "No result found"}
+        </div>
     </div>
   );
 }
