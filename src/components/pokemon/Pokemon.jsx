@@ -37,7 +37,7 @@ export default function Pokemon({ setSearchBar, searchBar }) {
       <div className="greyContainer" style={{backgroundColor: "rgba(100, 100, 100, 0.4)", borderRadius: "20px", width: "80%"}}>
       <PokemonTitle />
       <SearchBar setSearchBar={setSearchBar} />
-      <Randomiser />
+      <br />
       {pokemon.length > 0
         ? pokemon.map((p, index) => (
             <div style={{ display: "inline-flex", margin: "20px" }} key={index}>
