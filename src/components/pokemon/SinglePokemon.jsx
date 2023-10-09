@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PokemonDetail from "./PokemonDetail";
-import { Card } from "antd";
+import { Card, Button, Space } from "antd";
 import PokemonTitle from "./PokemonTitle";
 
 export default function SinglePokemon() {
@@ -26,9 +26,12 @@ export default function SinglePokemon() {
     console.log("Pokemon object is undefined");
   }
   return (
-    <div style={{ backgroundColor: "black", height: "100vh" }}>
+    <div style={{ backgroundColor: "black"}}>
       <div className="greyContainer" style={{backgroundColor: "rgba(100, 100, 100, 0.4)", borderRadius: "20px", width: "80%"}}>
-      <PokemonTitle pokemon = {pokemon} />
+        <PokemonTitle pokemon = {pokemon} />       
+      <Space wrap>
+        <Button type="primary" danger> Select Pokemon</Button>
+      </Space>
       {pokemon.name ? (
         <div
           style={{
@@ -47,9 +50,26 @@ export default function SinglePokemon() {
               />
             }
           >
-            <Meta title={pokemon.name.english} description="" />
+            <Meta title={pokemon.name.english} description={pokemon?.type} />
             <br />
-            <Link
+            <div className="stats">
+              <label>Health
+              <input type="range" max="200" value={pokemon?.base.HP} />
+              </label>
+              <br/>
+              <label> Attack
+              <input type="range" max="200" value={pokemon?.base.HP} />
+              </label>
+              <br/>
+              <label> Defence
+              <input type="range" max="200" value={pokemon?.base.Defense} />
+              </label>
+              <br/>
+              <label> Speed
+              <input type="range" max="200" value={pokemon?.base.Speed} />
+              </label>
+            </div>
+            {/* <Link
               to={`/pokemon/${id}/base`}
               element={<PokemonDetail name={pokemon?.name?.english} />}
             >
@@ -69,10 +89,11 @@ export default function SinglePokemon() {
             >
               {" "}
               Different Names
-            </Link>
+            </Link> */}
           </Card>
         </div>
       ) : null}
+
       </div>
     </div>
   );
