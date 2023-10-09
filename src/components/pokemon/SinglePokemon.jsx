@@ -28,10 +28,7 @@ export default function SinglePokemon() {
   return (
     <div style={{ backgroundColor: "black"}}>
       <div className="greyContainer" style={{backgroundColor: "rgba(100, 100, 100, 0.4)", borderRadius: "20px", width: "80%"}}>
-        <PokemonTitle pokemon = {pokemon} />       
-      <Space wrap>
-        <Button type="primary" danger> Select Pokemon</Button>
-      </Space>
+      <PokemonTitle pokemon = {pokemon} />   
       {pokemon.name ? (
         <div
           style={{
@@ -68,6 +65,10 @@ export default function SinglePokemon() {
               <label> Speed
               <input type="range" max="200" value={pokemon?.base.Speed} />
               </label>
+              <br/>   
+              <Space wrap>
+              <Button type="primary" danger> Select Pokemon</Button>
+              </Space>
             </div>
             {/* <Link
               to={`/pokemon/${id}/base`}
