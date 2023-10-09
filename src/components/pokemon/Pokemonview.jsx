@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import SinglePokemon from "./SinglePokemon";
-import { Card } from "antd";
+import { Card, Button, Space } from "antd";
 import Gamecoin from "../../assets/gamecoin.wav"
 import { Howl } from "howler";
 
@@ -32,6 +32,9 @@ function PokemonView({ p }) {
           <Meta title={p.name.english} 
           description={p.type[0]} 
           />
+        <Space wrap>
+        <Button style={{marginTop: "20px", filter: "grayscale(0)"}}type="primary" danger> Select Pokemon</Button>
+      </Space>
         </Card>
       </Link>
     </div>
