@@ -26,13 +26,13 @@ export default function SinglePokemon() {
     console.log("Pokemon object is undefined");
   }
   return (
-    <div style={{ backgroundColor: "black"}}>
+    <>
       <div className="greyContainer" style={{backgroundColor: "rgba(100, 100, 100, 0.4)", borderRadius: "20px", width: "80%"}}>
       <PokemonTitle pokemon = {pokemon} />   
       {pokemon.name ? (
         <div
           style={{
-            backgroundColor: "black",
+            // backgroundColor: "black",
             marginLeft: "5%",
             padding: "20px",
           }}
@@ -96,6 +96,6 @@ export default function SinglePokemon() {
       ) : null}
 
       </div>
-    </div>
+      </>
   );
 }
