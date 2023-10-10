@@ -80,30 +80,33 @@ export default function Randomiser() {
         <Meta title={randomPoke[imageId - 1]?.name.english} description="Info" />
   </Card> 
 </Link>) : (
-        <Link to={`/pokemon/${imageId}`} element={<SinglePokemon />}>
             <Card 
             hoverable
-            style={{ width: 300 }}
+            style={{ width: 300, marginBottom: "10%"}}
             cover={<img alt={randomPoke[imageId - 1]?.name.english} 
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`} />}
             >
         <Meta title={randomPoke[imageId - 1]?.name.english} description={randomPoke[imageId - 1]?.type[0]} />
         <br />
-            <div className="stats">
+            <div className="stats" style={{display: "grid"}}>
               <label>Health
               <input type="range" max="200" value={randomPoke[imageId - 1]?.base.HP} />
               </label>
-              <br/>
               <label> Attack
               <input type="range" max="200" value={randomPoke[imageId - 1]?.base.HP} />
               </label>
-              <br/>
               <label> Defence
               <input type="range" max="200" value={randomPoke[imageId - 1]?.base.Defense} />
               </label>
-              <br/>
               <label> Speed
               <input type="range" max="200" value={randomPoke[imageId - 1]?.base.Speed} />
+              </label>
+              <br/>
+              <label> Special Defence🛡️
+              <input type="range" max="100" value={randomPoke[imageId - 1]?.base["Sp. Defense"]} />
+              </label>
+              <label> Special Attack⚔️
+              <input type="range" max="100" value={randomPoke[imageId - 1]?.base["Sp. Attack"]} />
               </label>
               <br/>
             </div>
@@ -117,13 +120,11 @@ export default function Randomiser() {
           (<Button 
             onClick={handleOpponentSelect}
             type="primary"
-            style={{marginBottom: "5%"}} 
             >
             Opponent Selected!
             </Button>)  
         )}
-  </Card> 
-</Link>)}
+  </Card>)}
 </div>
     )
 }
