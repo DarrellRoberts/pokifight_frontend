@@ -27,14 +27,6 @@ export default function SinglePokemon() {
   } else {
     console.log("Pokemon object is undefined");
   }
-
-  const handlePokemonSelect = (pokemonId) => {
-    if (selected === pokemonId) {
-      setSelect(null);
-    } else {
-      setSelect(pokemonId)
-    }
-  }
   return (
     <>
       <div className="greyContainer" style={{backgroundColor: "rgba(100, 100, 100, 0.4)", borderRadius: "20px", width: "80%"}}>
@@ -60,21 +52,25 @@ export default function SinglePokemon() {
           >
             <Meta title={pokemon.name.english} description={pokemon?.type} />
             <br />
-            <div className="stats">
+            <div className="stats" style={{display: "grid"}}>
               <label>Health
               <input type="range" max="200" value={pokemon?.base.HP} />
               </label>
-              <br/>
               <label> Attack
               <input type="range" max="200" value={pokemon?.base.HP} />
               </label>
-              <br/>
               <label> Defence
               <input type="range" max="200" value={pokemon?.base.Defense} />
               </label>
-              <br/>
               <label> Speed
               <input type="range" max="200" value={pokemon?.base.Speed} />
+              </label>
+              <br/>
+              <label> Special Defence🛡️
+              <input type="range" max="100" value={pokemon?.base["Sp. Defense"]} />
+              </label>
+              <label> Special Attack⚔️
+              <input type="range" max="100" value={pokemon?.base["Sp. Attack"]} />
               </label>
               <br/>
               {!selected ? (  
