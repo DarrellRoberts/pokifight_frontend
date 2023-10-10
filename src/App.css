@@ -30,6 +30,11 @@ h1 {
   text-shadow: 2px 20px 35px rgb(6, 37, 211);
 }
 
+.singPokeContainer h2 {
+  font-family: "Russo One";
+  text-shadow: 2px 20px 35px rgb(6, 37, 211);
+}
+
 .greyContainer {
   box-shadow: 2px 2px 20px rgb(6, 37, 211);
 }

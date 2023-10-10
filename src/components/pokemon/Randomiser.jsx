@@ -9,6 +9,7 @@ export default function Randomiser() {
     const [imageId, setImageId] = useState(0);
     const [randomPoke, setRandomPoke] = useState([]);
     const [show, setShow] = useState(true);
+    const [opponentSelect, setOpponentSelect] = useState(false);
     const { Meta } = Card;
 
     const fetchData = async () => {
@@ -53,24 +54,26 @@ export default function Randomiser() {
         console.error(error);
     }
     }
+    const handleOpponentSelect = () => {
+        setOpponentSelect(!opponentSelect);
+        }
     return (
-<div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "2% 0%"}} className= "randomiser">
+<div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "0% 0%"}} className= "randomiser">
     {show ? (
     <Space className="site-button-ghost-wrapper" wrap>
         <Button 
         onClick={randomiser}
-        type="dashed"
-        style={{marginBottom: "10%"}} 
-        ghost
+        type="primary"
+        style={{marginBottom: "5%"}} 
         >
-        Lucky Dip
+        Choose your opponent!
         </Button>
     </Space>) : null}
         {imageId === 0 ? (        
         <Link>
             <Card 
             hoverable
-            style={{ width: 220 }}
+            style={{ width: 300 }}
             cover={<img alt={randomPoke[imageId - 1]?.name.english} 
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`} />}
             >
@@ -80,11 +83,45 @@ export default function Randomiser() {
         <Link to={`/pokemon/${imageId}`} element={<SinglePokemon />}>
             <Card 
             hoverable
-            style={{ width: 220 }}
+            style={{ width: 300 }}
             cover={<img alt={randomPoke[imageId - 1]?.name.english} 
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`} />}
             >
         <Meta title={randomPoke[imageId - 1]?.name.english} description={randomPoke[imageId - 1]?.type[0]} />
+        <br />
+            <div className="stats">
+              <label>Health
+              <input type="range" max="200" value={randomPoke[imageId - 1]?.base.HP} />
+              </label>
+              <br/>
+              <label> Attack
+              <input type="range" max="200" value={randomPoke[imageId - 1]?.base.HP} />
+              </label>
+              <br/>
+              <label> Defence
+              <input type="range" max="200" value={randomPoke[imageId - 1]?.base.Defense} />
+              </label>
+              <br/>
+              <label> Speed
+              <input type="range" max="200" value={randomPoke[imageId - 1]?.base.Speed} />
+              </label>
+              <br/>
+            </div>
+            {!opponentSelect ? (<Button 
+        onClick={handleOpponentSelect}
+        type="primary"
+        style={{marginBottom: "5%"}} 
+        >
+        +
+        </Button>) : (
+          (<Button 
+            onClick={handleOpponentSelect}
+            type="primary"
+            style={{marginBottom: "5%"}} 
+            >
+            Opponent Selected!
+            </Button>)  
+        )}
   </Card> 
 </Link>)}
 </div>
