@@ -5,9 +5,11 @@ import Randomiser from "./Randomiser";
 import PokemonView from "./Pokemonview";
 import SearchBar from "../Searchbar";
 import PokemonTitle from "./PokemonTitle";
+import PokemonImage from "../../assets/PokemonImage.png";
 
 export default function Pokemon({ setSearchBar, searchBar }) {
   const [pokemon, setPokemon] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     if (searchBar) {
@@ -25,6 +27,7 @@ export default function Pokemon({ setSearchBar, searchBar }) {
       // for testing purposes the number limited (memory consuming)
       const limited = res.slice(0, 10);
       setPokemon(limited);
+      setLoading(false);
     }
   };
 
@@ -38,6 +41,11 @@ export default function Pokemon({ setSearchBar, searchBar }) {
       <PokemonTitle />
       <SearchBar setSearchBar={setSearchBar} />
       <br />
+      {pokemon.length <= 0 ? (
+              <div className="spinner">
+              <img src={PokemonImage} alt="pokemon_logo" width="500px" />
+              </div>
+      ) : null}
       {pokemon.length > 0
         ? pokemon.map((p, index) => (
             <div style={{ display: "inline-flex", margin: "20px" }} key={index}>
