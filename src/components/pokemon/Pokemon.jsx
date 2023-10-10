@@ -9,7 +9,6 @@ import PokemonImage from "../../assets/PokemonImage.png";
 
 export default function Pokemon({ setSearchBar, searchBar }) {
   const [pokemon, setPokemon] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     if (searchBar) {
@@ -27,7 +26,6 @@ export default function Pokemon({ setSearchBar, searchBar }) {
       // for testing purposes the number limited (memory consuming)
       const limited = res.slice(0, 10);
       setPokemon(limited);
-      setLoading(false);
     }
   };
 
@@ -35,18 +33,26 @@ export default function Pokemon({ setSearchBar, searchBar }) {
     fetchData();
   }, [searchBar]);
 
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div style={{ color: "red", display: "flex", justifyContent: "center", alignItems: "center"}}>
-      <div className="greyContainer" style={{backgroundColor: "rgba(100, 100, 100, 0.4)", borderRadius: "20px", width: "80%"}}>
+      <div className="greyContainer" style={{backgroundColor: "rgba(100, 100, 100, 0.4)", borderRadius: "20px", width: "80%", minHeight: "100vh", marginBottom: "10px"}}>
       <PokemonTitle />
       <SearchBar setSearchBar={setSearchBar} />
       <br />
-      {pokemon.length <= 0 ? (
+      {isLoading ? (
               <div className="spinner">
               <img src={PokemonImage} alt="pokemon_logo" width="500px" />
               </div>
       ) : null}
-      {pokemon.length > 0
+      {pokemon.length > 0 && !isLoading
         ? pokemon.map((p, index) => (
             <div style={{ display: "inline-flex", margin: "20px" }} key={index}>
               <PokemonView p={p} />
