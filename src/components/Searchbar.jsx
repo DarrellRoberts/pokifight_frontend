@@ -10,19 +10,23 @@ const SearchBar = ({ setSearchBar }) => {
     setValue("");
   };
 
+  const capitaliseFirst = (e) => e.charAt(0).toUpperCase() + inputValue.slice(1);
   const handleInputChange = (e) => {
     setValue(e.target.value);
-    setSearchBar(e.target.value);
+    setSearchBar(capitaliseFirst(e.target.value));
   };
+
+  
 
   return (
     <>
     <Space direction="vertical">
       <Search
       onSubmit={handleSearchBar}
-      placeholder="input search text"
+      placeholder="Search for pokemon"
       allowClear
       enterButton="Search"
+      style={{textTransform: "capitalize"}}
       size="large"
       onChange={handleInputChange}
     />
