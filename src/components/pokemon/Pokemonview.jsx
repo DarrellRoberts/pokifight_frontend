@@ -3,8 +3,10 @@ import SinglePokemon from "./SinglePokemon";
 import { Card, Button, Space } from "antd";
 import Gamecoin from "../../assets/gamecoin.wav"
 import { Howl } from "howler";
+import {useState} from "react"
 
 function PokemonView({ p }) {
+  const [selected, setSelect] = useState(false)
   const { Meta } = Card;
 
   const playSound = () => {
@@ -14,9 +16,13 @@ function PokemonView({ p }) {
     });
     sound.play();
 }  
+
+const handlePokemonSelect = () => {
+setSelect(!selected);
+}
   return (
-    <div className="pokeContainer" style={{ display: "inline-flex", margin: "20px" }}>
-      <Link to={`/pokemon/${p.id}`} element={<SinglePokemon />}>
+    <div className="pokeContainer" style={{ display: "inline-flex", margin: "20px", flexDirection: "column" }}>
+      <Link to={`/pokemon/${p.id}`}>
         <Card
           onMouseEnter={playSound}
           hoverable
@@ -32,11 +38,26 @@ function PokemonView({ p }) {
           <Meta title={p.name.english} 
           description={p.type[0]} 
           />
-        <Space wrap>
-        <Button style={{marginTop: "20px", filter: "grayscale(0)"}}type="primary" danger> Select Pokemon</Button>
-      </Space>
-        </Card>
-      </Link>
+                  </Card>
+          </Link>
+          {!selected ? (  
+          <Space wrap>
+          <Button 
+          onClick={handlePokemonSelect} 
+          danger
+          style={{marginTop: "20px"}}
+          > +
+          </Button>
+              </Space>) : (
+              <Space wrap>
+              <Button 
+              danger
+              type="primary"
+              style={{marginTop: "20px"}}
+              onClick={handlePokemonSelect} 
+              primary> Pokemon Selected!</Button>
+              </Space>
+              )}
     </div>
   );
 }

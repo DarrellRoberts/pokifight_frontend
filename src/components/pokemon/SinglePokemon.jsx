@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import PokemonDetail from "./PokemonDetail";
 import { Card, Button, Space } from "antd";
 import PokemonTitle from "./PokemonTitle";
+import Randomiser from "./Randomiser";
 
 export default function SinglePokemon() {
   const [pokemon, setPokemon] = useState([]);
+  const [selected, setSelect] = useState(false)
   const { id } = useParams();
   const { Meta } = Card;
   const fetchData = async () => {
@@ -25,10 +27,19 @@ export default function SinglePokemon() {
   } else {
     console.log("Pokemon object is undefined");
   }
+
+  const handlePokemonSelect = (pokemonId) => {
+    if (selected === pokemonId) {
+      setSelect(null);
+    } else {
+      setSelect(pokemonId)
+    }
+  }
   return (
     <>
       <div className="greyContainer" style={{backgroundColor: "rgba(100, 100, 100, 0.4)", borderRadius: "20px", width: "80%"}}>
-      <PokemonTitle pokemon = {pokemon} />   
+      <PokemonTitle pokemon = {pokemon} />
+      <div className="singPokeContainer" style={{display: "flex", alignItems: "center"}}>   
       {pokemon.name ? (
         <div
           style={{
@@ -65,10 +76,21 @@ export default function SinglePokemon() {
               <label> Speed
               <input type="range" max="200" value={pokemon?.base.Speed} />
               </label>
-              <br/>   
+              <br/>
+              {!selected ? (  
               <Space wrap>
-              <Button type="primary" danger> Select Pokemon</Button>
+              <Button 
+              onClick={() => setSelect(true)} 
+              danger> +</Button>
+              </Space>) : (
+              <Space wrap>
+              <Button 
+              danger
+              type="primary"
+              onClick={() => setSelect(false)} 
+              primary> Pokemon Selected!</Button>
               </Space>
+              )}
             </div>
             {/* <Link
               to={`/pokemon/${id}/base`}
@@ -94,7 +116,13 @@ export default function SinglePokemon() {
           </Card>
         </div>
       ) : null}
-
+          {selected ? (
+            <>
+          <h2 style={{color: "white", fontSize:"10rem", margin: "5%"}}> Vs.</h2>
+        <Randomiser />
+        </>) : null
+      }
+</div>
       </div>
       </>
   );
