@@ -16,12 +16,18 @@ body {
 }
 
 .homeContainer {
-  background-color: black;
+  background-image: url("./assets/wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode:hard-light;
+  background-color: rgb(0, 0, 0);
+  height: 100vh;
 }
 
 h1 {
   font-family: "Russo One";
-  text-shadow: 2px 2px 20px rgb(6, 37, 211);
+  text-shadow: 2px 20px 35px rgb(6, 37, 211);
 }
 
 .greyContainer {

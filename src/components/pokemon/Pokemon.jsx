@@ -33,7 +33,7 @@ export default function Pokemon({ setSearchBar, searchBar }) {
   }, [searchBar]);
 
   return (
-    <div style={{ backgroundColor: "black", color: "red", display: "flex", justifyContent: "center", alignItems: "center"}}>
+    <div style={{ color: "red", display: "flex", justifyContent: "center", alignItems: "center"}}>
       <div className="greyContainer" style={{backgroundColor: "rgba(100, 100, 100, 0.4)", borderRadius: "20px", width: "80%"}}>
       <PokemonTitle />
       <SearchBar setSearchBar={setSearchBar} />
