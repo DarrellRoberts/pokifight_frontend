@@ -1,10 +1,25 @@
 import { Button, Space } from "antd";
-import { Link } from "react-router-dom";
-import Form from "./Form";
-import { useState } from "react";
+import {Link} from "react-router-dom"
+import Form from "./Form"
+import {useState, useEffect} from "react"
 
 export default function Homepage() {
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(false)
+  const [pokemon, setPokemon] = useState([])
+
+// testing if we fetch data in Homepage, will it load faster on Pokemon page?
+// as it stands, when the homepage is first openened there isn't any data for a while
+const fetchData = async () => {
+    const data = await fetch(
+      `https://pokemon-backend-ydlf.onrender.com/api/pokemon`
+    );
+    const res = await data.json();
+    setPokemon(res);
+    }
+
+useEffect(() => {
+  fetchData();
+}, [] ) 
   return (
     <>
       <div

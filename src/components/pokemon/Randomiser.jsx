@@ -59,7 +59,6 @@ export default function Randomiser({ pokemon }) {
     }
   };
   const handleOpponentSelect = () => {
-    console.log(opponentSelect);
     setOpponentSelect(!opponentSelect);
   };
 
@@ -94,100 +93,61 @@ export default function Randomiser({ pokemon }) {
           <Card
             hoverable
             style={{ width: 300 }}
-            cover={
-              <img
-                alt={randomPoke[imageId - 1]?.name.english}
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`}
-              />
-            }
-          >
-            <Meta
-              title={randomPoke[imageId - 1]?.name.english}
-              description="Info"
-            />
-          </Card>
-        </Link>
-      ) : (
-        <Link to={`/pokemon/${imageId}`} element={<SinglePokemon />}>
-          <Card
+            cover={<img alt={randomPoke[imageId - 1]?.name.english} 
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`} />}
+            >
+        <Meta title={randomPoke[imageId - 1]?.name.english} description="Info" />
+  </Card> 
+</Link>) : (
+            <Card 
             hoverable
-            style={{ width: 300 }}
-            cover={
-              <img
-                alt={randomPoke[imageId - 1]?.name.english}
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`}
-              />
-            }
-          >
-            <Meta
-              title={randomPoke[imageId - 1]?.name.english}
-              description={randomPoke[imageId - 1]?.type[0]}
-            />
-            <br />
-            <div className="stats">
-              <label>
-                Health
-                <input
-                  type="range"
-                  max="200"
-                  value={randomPoke[imageId - 1]?.base.HP}
-                />
+            style={{ width: 300, marginBottom: "10%"}}
+            cover={<img alt={randomPoke[imageId - 1]?.name.english} 
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`} />}
+            >
+        <Meta title={randomPoke[imageId - 1]?.name.english} description={randomPoke[imageId - 1]?.type[0]} />
+        <br />
+            <div className="stats" style={{display: "grid"}}>
+              <label>Health
+              <input type="range" max="200" value={randomPoke[imageId - 1]?.base.HP} />
               </label>
-              <br />
-              <label>
-                {" "}
-                Attack
-                <input
-                  type="range"
-                  max="200"
-                  value={randomPoke[imageId - 1]?.base.HP}
-                />
+              <label> Attack
+              <input type="range" max="200" value={randomPoke[imageId - 1]?.base.HP} />
               </label>
-              <br />
-              <label>
-                {" "}
-                Defence
-                <input
-                  type="range"
-                  max="200"
-                  value={randomPoke[imageId - 1]?.base.Defense}
-                />
+              <label> Defence
+              <input type="range" max="200" value={randomPoke[imageId - 1]?.base.Defense} />
               </label>
-              <br />
-              <label>
-                {" "}
-                Speed
-                <input
-                  type="range"
-                  max="200"
-                  value={randomPoke[imageId - 1]?.base.Speed}
-                />
+              <label> Speed
+              <input type="range" max="200" value={randomPoke[imageId - 1]?.base.Speed} />
               </label>
-              <br />
+              <br/>
+              <label> Special Defence🛡️
+              <input type="range" max="100" value={randomPoke[imageId - 1]?.base["Sp. Defense"]} />
+              </label>
+              <label> Special Attack⚔️
+              <input type="range" max="100" value={randomPoke[imageId - 1]?.base["Sp. Attack"]} />
+              </label>
+              <br/>
             </div>
-            {!opponentSelect ? (
-              <Button
-                onClick={() => {
+            {!opponentSelect ? (<Button 
+               onClick={() => {
                   handleData();
                   handleOpponentSelect();
                 }}
-                type="primary"
-                style={{ marginBottom: "5%" }}
-              >
-                +
-              </Button>
-            ) : (
-              <Button
-                onClick={handleOpponentSelect}
-                type="primary"
-                style={{ marginBottom: "5%" }}
-              >
-                Opponent Selected!
-              </Button>
-            )}
-          </Card>
-        </Link>
-      )}
-    </div>
-  );
+        type="primary"
+        style={{marginBottom: "5%"}} 
+        >
+        +
+        </Button>) : (
+          (<Button 
+            onClick={handleOpponentSelect}
+            type="primary"
+            >
+            Opponent Selected!
+            </Button>)  
+        )}
+  </Card>)}
+</div>
+    )
 }
+
