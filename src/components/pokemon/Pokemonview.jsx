@@ -6,7 +6,6 @@ import { Howl } from "howler";
 import { useState } from "react";
 
 function PokemonView({ p }) {
-  const [selected, setSelect] = useState(false);
   const { Meta } = Card;
 
   const playSound = () => {
@@ -17,9 +16,6 @@ function PokemonView({ p }) {
     sound.play();
   };
 
-  const handlePokemonSelect = () => {
-    setSelect(!selected);
-  };
   return (
     <div
       className="pokeContainer"
