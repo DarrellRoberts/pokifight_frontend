@@ -44,6 +44,10 @@ h1 {
   cursor: pointer;
 }
 
+.pagination .page-item:active, .previous.disabled:active, .previous:active {
+  color: red;
+}
+
 .pagination .page-item{
   list-style: none;
 }
@@ -167,7 +171,7 @@ background-color: rgb(6, 37, 211);
 }
 
 .header a:active {
-  color: rgb(6, 37, 211);;
+  color: rgb(211, 6, 6);
   text-shadow: 2px 20px 35px rgb(6, 37, 211);
 }
 
