@@ -69,8 +69,17 @@ h1 {
   text-shadow: 2px 20px 35px rgb(6, 37, 211);
 }
 
+@keyframes greyCon {
+  50% {box-shadow: 2px 2px 200px rgb(6, 37, 211)}
+  100% {box-shadow: 2px 2px 20px rgb(6, 37, 211)} 
+  }
+
 .greyContainer {
   box-shadow: 2px 2px 20px rgb(6, 37, 211);
+  animation-name: greyCon;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 :where(.css-pr0fja).ant-card-hoverable:hover {
