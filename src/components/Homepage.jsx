@@ -20,7 +20,6 @@ const fetchData = async () => {
 useEffect(() => {
   fetchData();
 }, [] ) 
-console.log(pokemon)
   return (
     <>
       <div
@@ -36,18 +35,29 @@ console.log(pokemon)
         <h1 style={{ color: "#FFF", letterSpacing: "20px", fontSize: "5rem" }}>
           Pokifight
         </h1>
-        {!clicked ? (<Space wrap>
-        <Button 
-        style={{marginTop: "20px", display: "flex", justifyContent: "center", alignItems: "center", fontSize:"3rem", padding: "40px 50px"}}
-        size= "large"
-        type="primary"
-        contentFontSize="50px"
-        onClick={() => setClicked(true)}
-        danger
-        > Start</Button>
-      </Space>) 
-      : null}
-      {clicked ? <Form/> : null}
+        {!clicked ? (
+          <Space wrap>
+            <Button
+              style={{
+                marginTop: "20px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "3rem",
+                padding: "40px 50px",
+              }}
+              size="large"
+              type="primary"
+              contentFontSize="50px"
+              onClick={() => setClicked(true)}
+              danger
+            >
+              {" "}
+              Start
+            </Button>
+          </Space>
+        ) : null}
+        {clicked ? <Form /> : null}
       </div>
     </>
   );

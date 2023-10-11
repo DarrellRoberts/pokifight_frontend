@@ -53,8 +53,11 @@ export default function Pokemon({ setSearchBar, searchBar }) {
               <PokemonView p={p} />
             </div>
           ))
-        : "No result found"}
+        : searchBar
+          ? "No result found"
+          : null}
         </div>
+
     </div>
   );
 }

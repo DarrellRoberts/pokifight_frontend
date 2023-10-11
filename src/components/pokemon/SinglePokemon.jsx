@@ -115,7 +115,7 @@ export default function SinglePokemon() {
           {selected ? (
             <>
           <h2 style={{color: "white", fontSize:"10rem", margin: "5%"}}> Vs.</h2>
-        <Randomiser />
+        <Randomiser pokemon={pokemon} />
         </>) : null
       }
 </div>

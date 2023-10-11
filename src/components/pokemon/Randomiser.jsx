@@ -1,77 +1,96 @@
 import { Card, Button, Space } from "antd";
-import { Link } from "react-router-dom"
-import { useState, useEffect } from "react"
-import SinglePokemon from "./SinglePokemon"
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import SinglePokemon from "./SinglePokemon";
 import { Howl } from "howler";
-import Roulette from "../../assets/roulette.wav"
+import Roulette from "../../assets/roulette.wav";
+import CreatePostPokemonForBattle from "../Createpostdata";
 
-export default function Randomiser() {
-    const [imageId, setImageId] = useState(0);
-    const [randomPoke, setRandomPoke] = useState([]);
-    const [show, setShow] = useState(true);
-    const [opponentSelect, setOpponentSelect] = useState(false);
-    const { Meta } = Card;
+export default function Randomiser({ pokemon }) {
+  const [imageId, setImageId] = useState(0);
+  const [randomPoke, setRandomPoke] = useState([]);
+  const [show, setShow] = useState(true);
+  const [opponentSelect, setOpponentSelect] = useState(false);
+  const { Meta } = Card;
 
-    const fetchData = async () => {
-          const data = await fetch(
-            `https://pokemon-backend-ydlf.onrender.com/api/pokemon`
-          );
-          const res = await data.json();
-          setRandomPoke(res);
-          }
-    
-    useEffect(() => {
-        fetchData();
-    }, [] ) 
+  const fetchData = async () => {
+    const data = await fetch(
+      `https://pokemon-backend-ydlf.onrender.com/api/pokemon`
+    );
+    const res = await data.json();
+    setRandomPoke(res);
+  };
 
-    const [rSound] = useState(new Howl({ 
-        src: [Roulette],
-        volume: 0.15 }))
-    const playSound = () => {
-        rSound.play();
-    }
-    const stopSound = () => {
-        rSound.stop();
-    }
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    const randomiser = () => {
+  const [rSound] = useState(
+    new Howl({
+      src: [Roulette],
+      volume: 0.15,
+    })
+  );
+  const playSound = () => {
+    rSound.play();
+  };
+  const stopSound = () => {
+    rSound.stop();
+  };
+
+  const randomiser = () => {
     try {
-        if (randomPoke) {
-            const Int = setInterval(() => {
-                playSound();
-                setImageId(Math.floor(Math.random() * 809) + 1)
-                setShow(false);
-            }, 75);
-            setTimeout(() => {
-                clearInterval(Int);
-                setShow(true)
-                stopSound();
-            }, 3000)
-        } else {
-            return setImageId(0);
+      if (randomPoke) {
+        const Int = setInterval(() => {
+          playSound();
+          setImageId(Math.floor(Math.random() * 809) + 1);
+          setShow(false);
+        }, 75);
+        setTimeout(() => {
+          clearInterval(Int);
+          setShow(true);
+          stopSound();
+        }, 3000);
+      } else {
+        return setImageId(0);
       }
-    } catch(error) {
-        console.error(error);
+    } catch (error) {
+      console.error(error);
     }
-    }
-    const handleOpponentSelect = () => {
-        setOpponentSelect(!opponentSelect);
-        }
-    return (
-<div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "0% 0%"}} className= "randomiser">
-    {show ? (
-    <Space className="site-button-ghost-wrapper" wrap>
-        <Button 
-        onClick={randomiser}
-        type="primary"
-        style={{marginBottom: "5%"}} 
-        >
-        Choose your opponent!
-        </Button>
-    </Space>) : null}
-        {imageId === 0 ? (        
+  };
+  const handleOpponentSelect = () => {
+    setOpponentSelect(!opponentSelect);
+  };
+
+  //send data to post to the backend
+  const handleData = () => {
+    CreatePostPokemonForBattle(pokemon, randomPoke[imageId - 1]);
+  };
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "0% 0%",
+      }}
+      className="randomiser"
+    >
+      {show ? (
+        <Space className="site-button-ghost-wrapper" wrap>
+          <Button
+            onClick={randomiser}
+            type="primary"
+            style={{ marginBottom: "5%" }}
+          >
+            Choose your opponent!
+          </Button>
+        </Space>
+      ) : null}
+      {imageId === 0 ? (
         <Link>
-            <Card 
+          <Card
             hoverable
             style={{ width: 300 }}
             cover={<img alt={randomPoke[imageId - 1]?.name.english} 
@@ -111,7 +130,10 @@ export default function Randomiser() {
               <br/>
             </div>
             {!opponentSelect ? (<Button 
-        onClick={handleOpponentSelect}
+               onClick={() => {
+                  handleData();
+                  handleOpponentSelect();
+                }}
         type="primary"
         style={{marginBottom: "5%"}} 
         >
@@ -128,3 +150,4 @@ export default function Randomiser() {
 </div>
     )
 }
+
