@@ -45,31 +45,6 @@ function PokemonView({ p }) {
           <Meta title={p.name.english} description={p.type[0]} />
         </Card>
       </Link>
-      {!selected ? (
-        <Space wrap>
-          <Button
-            onClick={handlePokemonSelect}
-            danger
-            style={{ marginTop: "20px" }}
-          >
-            {" "}
-            +
-          </Button>
-        </Space>
-      ) : (
-        <Space wrap>
-          <Button
-            danger
-            type="primary"
-            style={{ marginTop: "20px" }}
-            onClick={handlePokemonSelect}
-            primary
-          >
-            {" "}
-            Pokemon Selected!
-          </Button>
-        </Space>
-      )}
     </div>
   );
 }

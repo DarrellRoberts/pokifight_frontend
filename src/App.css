@@ -166,10 +166,30 @@ background-color: rgb(6, 37, 211);
 }
 
 @keyframes example {
-40% {transform: rotate(45deg)}
-80% {transform: rotate(-45deg)}
-100% {transform: rotate(360deg)}
+  40% {transform: rotate(45deg)}
+  80% {transform: rotate(-45deg)}
+  100% {transform: rotate(360deg)}
+  }
+
+/*opponent */
+.opponentCard:hover {
+  border-color: transparent;
+  box-shadow: 0 10px 20px -20px rgba(211, 6, 6, 0.4), 0 30px 60px 0 rgba(211, 6, 6, 0.4), 0 50px 120px 40px rgba(211, 6, 6, 0.4);
 }
+
+.arrow {
+  font-size: 1.5rem;
+  color: red;
+  animation-name: arrow;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes arrow {
+  50% {transform: translateX(50%)}
+  100% {transform: translateX(0%)}
+  }
 
 /* Leaderboard */
 .leaderboardContainer ul {
