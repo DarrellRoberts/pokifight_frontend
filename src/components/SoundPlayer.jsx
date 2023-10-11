@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import Soundtrack from "../assets/soundtrack.mp3";
+import Sound from "../assets/sound.png";
 
 
 export default function SoundPlayer() {
@@ -23,14 +24,14 @@ export default function SoundPlayer() {
     };
     return (
         <>
-            <div>
+        <div className="audio">
       <audio ref={audioRef} loop>
         <source src={Soundtrack} type="audio/mpeg" />
       </audio>
-      <button onClick={togglePlay}>
-        {isPlaying ? 'Pause' : 'Play'}
-      </button>
-    </div>
+      {isPlaying ? 
+      <img style={{filter: "contrast(0)"}} src={Sound} width="50px" onClick={togglePlay} />
+      : <img src={Sound} width="50px" onClick={togglePlay} />}
+      </div>
         </>
     )
 }
