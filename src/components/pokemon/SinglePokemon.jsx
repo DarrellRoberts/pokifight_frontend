@@ -109,15 +109,14 @@ export default function SinglePokemon() {
                   <br />
                   {!selected ? (
                     <Space wrap>
-                      <Button onClick={() => setSelect(true)} danger>
-                        {" "}
+                      <Button
+                      onClick={() => setSelect(true)}>
                         +
                       </Button>
                     </Space>
                   ) : (
                     <Space wrap>
                       <Button
-                        danger
                         type="primary"
                         onClick={() => setSelect(false)}
                         primary

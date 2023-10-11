@@ -1,4 +1,5 @@
 import { Card, Button, Space } from "antd";
+import { DoubleLeftOutlined } from "@ant-design/icons"
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SinglePokemon from "./SinglePokemon";
@@ -67,6 +68,7 @@ export default function Randomiser({ pokemon }) {
     CreatePostPokemonForBattle(pokemon, randomPoke[imageId - 1]);
   };
   return (
+    <>
     <div
       style={{
         display: "flex",
@@ -77,11 +79,12 @@ export default function Randomiser({ pokemon }) {
       }}
       className="randomiser"
     >
-      {show ? (
+      {show && !opponentSelect ? (
         <Space className="site-button-ghost-wrapper" wrap>
           <Button
             onClick={randomiser}
             type="primary"
+            danger
             style={{ marginBottom: "5%" }}
           >
             Choose your opponent!
@@ -91,6 +94,7 @@ export default function Randomiser({ pokemon }) {
       {imageId === 0 ? (
         <Link>
           <Card
+            className="opponentCard"
             hoverable
             style={{ width: 300 }}
             cover={
@@ -108,6 +112,7 @@ export default function Randomiser({ pokemon }) {
         </Link>
       ) : (
         <Card
+          className="opponentCard"
           hoverable
           style={{ width: 300, marginBottom: "10%" }}
           cover={
@@ -185,18 +190,37 @@ export default function Randomiser({ pokemon }) {
                 handleData();
                 handleOpponentSelect();
               }}
-              type="primary"
+              danger
               style={{ marginBottom: "5%" }}
             >
               +
             </Button>
           ) : (
-            <Button onClick={handleOpponentSelect} type="primary">
+            <>
+            <Button onClick={handleOpponentSelect} type="primary" danger>
               Opponent Selected!
             </Button>
+            <span>
+            <Link
+            to="/pokemon/game"
+            >
+              <Button
+            primary
+            danger
+            style={{marginTop: "5%"}}
+            > 
+            Start Game🎮
+            </Button>
+            </Link>
+            <DoubleLeftOutlined
+            className="arrow"
+            />
+            </span>
+          </>
           )}
         </Card>
       )}
     </div>
+    </>
   );
 }
