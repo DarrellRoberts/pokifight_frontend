@@ -2,10 +2,18 @@ import { useState, useEffect } from "react";
 import { Progress, Space, Button } from "antd";
 import { Link } from "react-router-dom"
 import "../game/game.css"
+import Countdown from "../../assets/countdown.wav"
+import { Howl } from "howler"
+import Smoke from "../../assets/smoke.png"
+import Fightnoise from "../../assets/fightnoise.mp3"
+import Fightvoice from "../../assets/fightvoice.wav"
 
 export default function Game() {
 const [player, setPlayer] = useState([])
+const [username, setUsername] = useState([]);
 const [start, setStart] = useState(true)
+const [timer, setTimer] = useState("Start");
+const [smoke, setSmoke] = useState(false);
 const [startAnimation, setStartAnimation] = useState(false);
 const [gameover, setGameOver] = useState(false);
 const fetchPlayer = async () => {
@@ -13,25 +21,86 @@ const fetchPlayer = async () => {
     const res = await data.json();
     setPlayer(res);
 }
+const fetchUsername = async () => {
+    const data = await fetch("https://pokemon-backend-ydlf.onrender.com/api/pokemon/username")
+    const res = await data.json();
+    setUsername(res);
+}
 
-useEffect (() => { 
-    fetchPlayer()}
-    , [])
+const playCountdown = () => {
+    const sound = new Howl({
+      src: [Countdown],
+      volume: 0.30,
+    });
+    sound.play();
+  };
+
+  const playFight = () => {
+    const sound = new Howl({
+      src: [Fightnoise],
+      volume: 0.30,
+    });
+    sound.play();
+  };
+
+  const playFightVoice = () => {
+    const sound = new Howl({
+      src: [Fightvoice],
+      volume: 0.30,
+    });
+    sound.play();
+  };
+
+    const handleTimer = () => {
+        const time = 
+        setTimeout(() => {
+        playCountdown()}, 0);
+        setTimeout(() => {
+        setTimer(1)}, 0);
+        setTimeout(() => {
+        setTimer(2)}, 1000);
+        setTimeout(() => {
+        setTimer(3)}, 2000);
+        setTimeout(() => {
+        setTimer("Fight!"); playFightVoice()}, 3000)
+        setTimeout(() => {
+        setTimer(""); 
+        setStart(false);
+        handleStartAnimation()}, 4000)
+        return () => clearTimeout(time);
+    }
+
+    useEffect (() => { 
+        fetchPlayer()}
+        , [])
 
     const handleStartAnimation = () => {
         setTimeout(() => {setStartAnimation(true)}, 3000);
-        const timer = setTimeout(() => {
+        setTimeout(() => {setSmoke(true); playFight()}, 3200);
+        setTimeout(() => {setSmoke(false)}, 3400);
+        setTimeout(() => {setSmoke(true); playFight()}, 4200);
+        setTimeout(() => {setSmoke(false); playFight()}, 4400);
+        setTimeout(() => {setSmoke(true)}, 5200);
+        setTimeout(() => {setSmoke(false); playFight()}, 5400);
+        setTimeout(() => {setSmoke(true)}, 6200);
+        setTimeout(() => {setSmoke(false); playFight()}, 6400);
+        setTimeout(() => {setSmoke(true); playFight()}, 7200);
+        setTimeout(() => {setSmoke(false)}, 7400);
+        setTimeout(() => {setSmoke(true); playFight()}, 8200);
+        setTimeout(() => {setSmoke(false); playFight()}, 8400);
+        setTimeout(() => {setSmoke(true)}, 9200);
+        setTimeout(() => {setSmoke(false); playFight()}, 9400);
+        const time = setTimeout(() => {
         setStartAnimation(false); setGameOver(true)}, 10000);
-        return () => clearTimeout(timer);
+        return () => clearTimeout(time);
       };
+console.log(username);
 console.log(player)
     return (
         <>
         {start ? (
         <div style={{display: "flex", justifyContent: "center"}}>
-            <h1 onClick={() => {
-                setStart(false); 
-                handleStartAnimation()}} style={{color: "white", fontSize: "10rem", textAlign: "center", cursor: "pointer"}}>Fight!</h1>
+            <h1 onClick={handleTimer} style={{color: "white", fontSize: "10rem", textAlign: "center", cursor: "pointer"}}>{timer}</h1>
         </div>) : 
         (
         <div className="arena" style={{display: "flex", justifyContent: "space-between"}}>
@@ -113,10 +182,15 @@ console.log(player)
                 </div>
                 <img className={`playerImage ${startAnimation ? 'animate' : ''}`} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${player[0]?.pokemonSelected.id}.png`} alt={player[0]?.pokemonSelected.name.english} width="400px"/>
         </div>
-
+            {smoke ? (
+            <div style={{ display: "flex", flexDirection: "column", height: "80%", justifyContent: "flex-end", position: "absolute", width: "100%", alignItems:"center", zIndex: "2" }}>
+            <img src={Smoke} alt="smoke" width="800px" />
+            </div>
+            ) : null}
             {gameover ? (
             <div style={{display: "flex", flexDirection: "column", height: "85vh", justifyContent: "flex-end", fontSize: "3rem"}}>
-            <h2 style={{marginBottom: "0px"}}>Game Over</h2>
+            <h2 style={{marginBottom: "0px"}}>Username Wins!</h2>
+            <h2 style={{marginBottom: "0px", textAlign:"center"}}>Game Over</h2>
             <div style={{display: "flex", justifyContent: "space-evenly"}}>
             <Link to="/leaderboard">
             <Button type="primary">
