@@ -110,6 +110,36 @@ background-color: rgb(6, 37, 211);
 
 }
 
+/* header */
+.header a {
+  text-decoration: none;
+  font-family: "Russo One";
+  color: white;
+  font-size: 2rem;
+  text-shadow: 2px 20px 35px rgb(6, 37, 211);
+  transition: all ease-in 0.15s;
+}
+
+.header a:hover {
+  transform:translateY(20%);
+  text-shadow: 2px 20px 35px rgb(211, 6, 6);
+  
+}
+
+.header a:active {
+  color: rgb(6, 37, 211);;
+  text-shadow: 2px 20px 35px rgb(6, 37, 211);
+}
+
+/* audio */
+.audio {
+  cursor: pointer;
+}
+
+.audio img:hover {
+  filter: contrast(1);
+}
+
 /* spinner */
 .spinner {
   z-index: 2;
@@ -162,6 +192,11 @@ padding: "0px";
 }
 
 .leaderboardContainer .firstPlace {
+  opacity: 80%;
+  background-image: url("./assets/metal.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode:hard-light;
   background-color: rgba(141, 120, 3, 0.8);
   box-shadow: 2px 2px 20px rgb(6, 37, 211);
   animation-name: goldLeader;
@@ -176,6 +211,11 @@ padding: "0px";
   }
 
 .leaderboardContainer .secondPlace {
+  opacity: 80%;
+  background-image: url("./assets/metal.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode:hard-light;
   background-color: rgba(147, 144, 144, 0.8);
   box-shadow: 2px 2px 20px rgb(6, 37, 211);
   animation-name: silverLeader;
@@ -190,6 +230,11 @@ padding: "0px";
   }
 
 .leaderboardContainer .thirdPlace {
+  opacity: 80%;
+  background-image: url("./assets/metal.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode:hard-light;
   background-color: rgba(110, 61, 15, 0.8);
   box-shadow: 2px 2px 20px rgb(6, 37, 211);
   animation-name: bronzeLeader;
