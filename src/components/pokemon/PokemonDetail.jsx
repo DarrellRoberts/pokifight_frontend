@@ -1,7 +1,7 @@
 import { useParams, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export default function PokemonDetail({ name }) {
+export default function PokemonDetail() {
   const [pokemon, setPokemon] = useState([]);
   const { id, info } = useParams();
   const fetchData = async () => {

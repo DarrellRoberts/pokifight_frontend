@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import PokemonView from "./Pokemonview";
 import SearchBar from "../Searchbar";
 import PokemonTitle from "./PokemonTitle";
-import Spinner from "../Spinner"
+import Spinner from "../Spinner";
 
 export default function Pokemon({ setSearchBar, searchBar }) {
   const [pokemon, setPokemon] = useState([]);
@@ -39,25 +39,41 @@ export default function Pokemon({ setSearchBar, searchBar }) {
   }, []);
 
   return (
-    <div style={{ color: "red", display: "flex", justifyContent: "center", alignItems: "center"}}>
-      <div className="greyContainer" style={{backgroundColor: "rgba(100, 100, 100, 0.4)", borderRadius: "20px", width: "80%", minHeight: "100vh", marginBottom: "10px"}}>
-      <PokemonTitle />
-      <SearchBar setSearchBar={setSearchBar} />
-      <br />
-      {isLoading ? (
-        <Spinner />
-      ) : null}
-      {pokemon.length > 0 && !isLoading
-        ? pokemon.map((p, index) => (
-            <div style={{ display: "inline-flex", margin: "20px" }} key={index}>
-              <PokemonView p={p} />
-            </div>
-          ))
-        : searchBar
+    <div
+      style={{
+        color: "red",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div
+        className="greyContainer"
+        style={{
+          backgroundColor: "rgba(100, 100, 100, 0.4)",
+          borderRadius: "20px",
+          width: "80%",
+          minHeight: "100vh",
+          marginBottom: "10px",
+        }}
+      >
+        <PokemonTitle />
+        <SearchBar setSearchBar={setSearchBar} />
+        <br />
+        {isLoading ? <Spinner /> : null}
+        {pokemon.length > 0 && !isLoading
+          ? pokemon.map((p, index) => (
+              <div
+                style={{ display: "inline-flex", margin: "20px" }}
+                key={index}
+              >
+                <PokemonView p={p} />
+              </div>
+            ))
+          : searchBar
           ? "No result found"
           : null}
-        </div>
-
+      </div>
     </div>
   );
 }
