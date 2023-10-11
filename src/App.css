@@ -30,6 +30,36 @@ h1 {
   text-shadow: 2px 20px 35px rgb(6, 37, 211);
 }
 
+/* paginate */
+.pagination {
+  display: flex;
+  justify-content: space-evenly;
+  font-family: "Russo One";
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 5px rgb(6, 37, 211);
+}
+
+.pagination .page-item:hover, .previous.disabled:hover, .previous:hover {
+  cursor: pointer;
+}
+
+.pagination .page-item:active, .previous.disabled:active, .previous:active {
+  color: red;
+}
+
+.pagination .page-item{
+  list-style: none;
+}
+
+.previous.disabled {
+  list-style: none;
+}
+
+.previous {
+  list-style: none;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   input[type='range'] {
     overflow: hidden;
@@ -141,7 +171,7 @@ background-color: rgb(6, 37, 211);
 }
 
 .header a:active {
-  color: rgb(6, 37, 211);;
+  color: rgb(211, 6, 6);
   text-shadow: 2px 20px 35px rgb(6, 37, 211);
 }
 

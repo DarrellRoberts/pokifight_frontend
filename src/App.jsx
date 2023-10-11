@@ -10,9 +10,10 @@ import SinglePokemon from "./components/pokemon/SinglePokemon";
 import Game from "./components/game/Game"
 import Leaderboard from "./components/game/Leaderboard"
 import { useState } from "react";
+import Paginate from "./components/Paginate"
+
 
 function App() {
-  const { id } = useParams();
   const [searchBar, setSearchBar] = useState("");
 
   return (
@@ -26,7 +27,7 @@ function App() {
         <Route
           path="pokemon"
           element={
-            <Pokemon setSearchBar={setSearchBar} searchBar={searchBar} />
+            <Paginate setSearchBar={setSearchBar} searchBar={searchBar} PokemonPerPage={15}/>
           }
         />
         {/* Second Page */}
