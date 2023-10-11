@@ -10,18 +10,7 @@ export default function Paginate({searchBar, setSearchBar, PokemonPerPage}) {
 const [pokemon, setPokemon] = useState([]);
 const [totalPages, setTotalPages] = useState(0);
 const [itemOffset, setItemOffset] = useState(0);
-const [isLoading, setIsLoading] = useState(false);
-const [error, setError] = useState(null);
-
-const itemRender = (_, type, originalElement) => {
-    if (type === 'prev') {
-      return <a>Previous</a>;
-    }
-    if (type === 'next') {
-      return <a>Next</a>;
-    }
-    return originalElement;
-  };
+const [isLoading, setIsLoading] = useState(true);
 
 const fetchData = async () => {
 if (searchBar) {
@@ -37,7 +26,6 @@ const data = await fetch(
       const res = await data.json();
       setPokemon(res.slice(itemOffset, endOffset));
       setTotalPages(Math.ceil(res.length / PokemonPerPage))
-      setIsLoading(false);
   }
 };
 
@@ -55,6 +43,13 @@ const handleChange = (page) => {
       setItemOffset(newOffset);
     };
 
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }, []);
+
     return (
         <>
             <div
@@ -63,6 +58,7 @@ const handleChange = (page) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        flexDirection: "column",
       }}
     >
       <div
@@ -91,7 +87,8 @@ const handleChange = (page) => {
           : searchBar
           ? "No result found"
           : null}
-          <div style={{listStyle:"none"}}>
+          </div>
+          <div className="page">
         <ReactPaginate
         nextLabel="Next >"
         previousLabel="< Previous"
@@ -110,7 +107,6 @@ const handleChange = (page) => {
         pageRangeDisplayed={5}
         marginPagesDisplayed={5}
       />
-      </div>
       </div>
     </div>
         </>
