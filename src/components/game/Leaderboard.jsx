@@ -27,7 +27,6 @@ export default function Leaderboard() {
                         <ul style={{float: "right", display: "inline-flex", listStyle: "none"}}>
                         <li> Wins <br/> 5 </li>
                         <li> Loses <br/> 5</li>
-                        <li> Pokes <br/> 5</li>
                         <li> Points <br/> 5</li>
                     </ul>
                     </div>
@@ -38,7 +37,6 @@ export default function Leaderboard() {
                         <ul style={{float: "right", display: "inline-flex", listStyle: "none"}}>
                         <li> Wins <br/> 5 </li>
                         <li> Loses <br/> 5</li>
-                        <li> Pokes <br/> 5</li>
                         <li> Points <br/> 5</li>
                     </ul>
                     </div>
@@ -49,7 +47,6 @@ export default function Leaderboard() {
                         <ul style={{float: "right", display: "inline-flex", listStyle: "none"}}>
                         <li> Wins <br/> 5 </li>
                         <li> Loses <br/> 5</li>
-                        <li> Pokes <br/> 5</li>
                         <li> Points <br/> 5</li>
                     </ul>
                     </div>
@@ -60,7 +57,6 @@ export default function Leaderboard() {
                         <ul style={{float: "right", display: "inline-flex", listStyle: "none"}}>
                         <li> Wins <br/> 5 </li>
                         <li> Loses <br/> 5</li>
-                        <li> Pokes <br/> 5</li>
                         <li> Points <br/> 5</li>
                     </ul>
                     </div>
@@ -71,7 +67,6 @@ export default function Leaderboard() {
                         <ul style={{float: "right", display: "inline-flex", listStyle: "none"}}>
                         <li> Wins <br/> 5 </li>
                         <li> Loses <br/> 5</li>
-                        <li> Pokes <br/> 5</li>
                         <li> Points <br/> 5</li>
                     </ul>
                     </div>
@@ -82,7 +77,6 @@ export default function Leaderboard() {
                         <ul style={{float: "right", display: "inline-flex", listStyle: "none"}}>
                         <li> Wins <br/> 5 </li>
                         <li> Loses <br/> 5</li>
-                        <li> Pokes <br/> 5</li>
                         <li> Points <br/> 5</li>
                     </ul>
                     </div>
@@ -93,7 +87,6 @@ export default function Leaderboard() {
                         <ul style={{float: "right", display: "inline-flex", listStyle: "none"}}>
                         <li> Wins <br/> 5 </li>
                         <li> Loses <br/> 5</li>
-                        <li> Pokes <br/> 5</li>
                         <li> Points <br/> 5</li>
                     </ul>
                     </div>
@@ -104,7 +97,6 @@ export default function Leaderboard() {
                         <ul style={{float: "right", display: "inline-flex", listStyle: "none"}}>
                         <li> Wins <br/> 5 </li>
                         <li> Loses <br/> 5</li>
-                        <li> Pokes <br/> 5</li>
                         <li> Points <br/> 5</li>
                     </ul>
                     </div>
@@ -115,7 +107,6 @@ export default function Leaderboard() {
                         <ul style={{float: "right", display: "inline-flex", listStyle: "none"}}>
                         <li> Wins <br/> 5 </li>
                         <li> Loses <br/> 5</li>
-                        <li> Pokes <br/> 5</li>
                         <li> Points <br/> 5</li>
                     </ul>
                     </div>
@@ -126,7 +117,6 @@ export default function Leaderboard() {
                         <ul style={{float: "right", display: "inline-flex", listStyle: "none"}}>
                         <li> Wins <br/> 5 </li>
                         <li> Loses <br/> 5</li>
-                        <li> Pokes <br/> 5</li>
                         <li> Points <br/> 5</li>
                     </ul>
                     </div>
