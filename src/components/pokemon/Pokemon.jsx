@@ -33,19 +33,38 @@ export default function Pokemon({ setSearchBar, searchBar }) {
   }, [searchBar]);
 
   return (
-    <div style={{ color: "red", display: "flex", justifyContent: "center", alignItems: "center"}}>
-      <div className="greyContainer" style={{backgroundColor: "rgba(100, 100, 100, 0.4)", borderRadius: "20px", width: "80%"}}>
-      <PokemonTitle />
-      <SearchBar setSearchBar={setSearchBar} />
-      <br />
-      {pokemon.length > 0
-        ? pokemon.map((p, index) => (
-            <div style={{ display: "inline-flex", margin: "20px" }} key={index}>
-              <PokemonView p={p} />
-            </div>
-          ))
-        : "No result found"}
-        </div>
+    <div
+      style={{
+        color: "red",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div
+        className="greyContainer"
+        style={{
+          backgroundColor: "rgba(100, 100, 100, 0.4)",
+          borderRadius: "20px",
+          width: "80%",
+        }}
+      >
+        <PokemonTitle />
+        <SearchBar setSearchBar={setSearchBar} />
+        <br />
+        {pokemon.length > 0
+          ? pokemon.map((p, index) => (
+              <div
+                style={{ display: "inline-flex", margin: "20px" }}
+                key={index}
+              >
+                <PokemonView p={p} />
+              </div>
+            ))
+          : searchBar
+          ? "No result found"
+          : null}
+      </div>
     </div>
   );
 }
