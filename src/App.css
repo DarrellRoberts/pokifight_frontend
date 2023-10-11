@@ -132,6 +132,77 @@ background-color: rgb(6, 37, 211);
 100% {transform: rotate(360deg)}
 }
 
+/* Leaderboard */
+.leaderboardContainer ul {
+  list-style: none
+}
+
+.leaderboardContainer .leftUl {
+float: "left"; 
+list-style: "none"; 
+display: "flex"; 
+align-items:"center"; 
+justify-content: "start"; 
+width: "40%";
+padding: "0px";
+}
+
+.leaderboardContainer li {
+  font-size: 2rem;
+  margin: 5%;
+  }
+
+.leaderboardContainer .firstPlace, .secondPlace, .thirdPlace, .otherPlace {
+  font-family: "Russo One";
+}
+
+@keyframes goldLeader {
+50% {background-color: rgba(255, 217, 0, 0.80)}
+100% {background-color: rgba(141, 120, 3, 0.8);} 
+}
+
+.leaderboardContainer .firstPlace {
+  background-color: rgba(141, 120, 3, 0.8);
+  box-shadow: 2px 2px 20px rgb(6, 37, 211);
+  animation-name: goldLeader;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes silverLeader {
+  50% {background-color: rgba(214, 209, 209, 0.8);}
+  100% {background-color: rgba(147, 144, 144, 0.8);} 
+  }
+
+.leaderboardContainer .secondPlace {
+  background-color: rgba(147, 144, 144, 0.8);
+  box-shadow: 2px 2px 20px rgb(6, 37, 211);
+  animation-name: silverLeader;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes bronzeLeader {
+  50% {background-color: rgba(182, 100, 23, 0.8);}
+  100% {background-color: rgba(110, 61, 15, 0.8);} 
+  }
+
+.leaderboardContainer .thirdPlace {
+  background-color: rgba(110, 61, 15, 0.8);
+  box-shadow: 2px 2px 20px rgb(6, 37, 211);
+  animation-name: bronzeLeader;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.leaderboardContainer .otherPlace {
+  background-color: rgba(68, 67, 67, 0.80);
+}
+
+
 /* need to be properly set */
 .container-temp-font {
   color: red;
