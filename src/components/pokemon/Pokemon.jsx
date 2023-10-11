@@ -1,11 +1,8 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import SinglePokemon from "./SinglePokemon";
-import Randomiser from "./Randomiser";
 import PokemonView from "./Pokemonview";
 import SearchBar from "../Searchbar";
 import PokemonTitle from "./PokemonTitle";
-import PokemonImage from "../../assets/PokemonImage.png";
+import Spinner from "../Spinner"
 
 export default function Pokemon({ setSearchBar, searchBar }) {
   const [pokemon, setPokemon] = useState([]);
@@ -48,9 +45,7 @@ export default function Pokemon({ setSearchBar, searchBar }) {
       <SearchBar setSearchBar={setSearchBar} />
       <br />
       {isLoading ? (
-              <div className="spinner">
-              <img src={PokemonImage} alt="pokemon_logo" width="500px" />
-              </div>
+        <Spinner />
       ) : null}
       {pokemon.length > 0 && !isLoading
         ? pokemon.map((p, index) => (
