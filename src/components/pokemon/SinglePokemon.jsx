@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Card, Button, Space } from "antd";
 import PokemonTitle from "./PokemonTitle";
 import Randomiser from "./Randomiser";
+import Game from "../game/Game.jsx"
 
 export default function SinglePokemon() {
   const [pokemon, setPokemon] = useState([]);

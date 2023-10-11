@@ -64,9 +64,14 @@ h1 {
 }
 
 
-.singPokeContainer h2 {
+ h2 {
   font-family: "Russo One";
+  color: white;
   text-shadow: 2px 20px 35px rgb(6, 37, 211);
+}
+
+.opponentCon h2 {
+  text-shadow: 2px 20px 35px rgb(255, 3, 3);
 }
 
 @keyframes greyCon {
@@ -190,6 +195,22 @@ background-color: rgb(6, 37, 211);
   50% {transform: translateX(50%)}
   100% {transform: translateX(0%)}
   }
+
+/* Game */
+/* :where(.css-dev-only-do-not-override-pr0fja).ant-progress .ant-progress-circle-trail {
+  stroke: white;
+}
+:where(.css-pr0fja).ant-progress .ant-progress-circle-trail {
+  stroke: white;
+}
+:where(.css-dev-only-do-not-override-pr0fja).ant-progress.ant-progress-circle .ant-progress-text {
+color: white;
+} */
+
+.playerImage {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
 
 /* Leaderboard */
 .leaderboardContainer ul {

@@ -1,0 +1,28 @@
+.playerImage.animate {
+    animation-name: playerOne;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    /* animation-timing-function: linear; */
+  }
+  
+  @keyframes playerOne {
+    /* 0% {transform: scaleX(-1)}; */
+    /* 5% {transform: translateY(5%)};
+    10% {transform: translateY(0%)}; */
+    20% {transform: translateX(200%)};
+  }
+  
+  .opponentImage.animate {
+    animation-name: Opponentx;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    /* animation-timing-function: linear; */
+  }
+  
+  @keyframes Opponentx {
+    /* 0% {transform: scaleX(-1)}; */
+    /* 5% {transform: translateY(5%)};
+    10% {transform: translateY(0%)}; */
+    20% {transform: translateX(-200%)};
+  }
+  
