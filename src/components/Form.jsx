@@ -12,7 +12,6 @@ export default function Form() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log(username);
     PostUsername(username);
     window.location.href = "/pokemon";
   };
