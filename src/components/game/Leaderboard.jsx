@@ -30,7 +30,7 @@ export default function Leaderboard() {
     const timer = setTimeout(() => {
       setIsLoading(false);
       fetchData();
-    }, 2000);
+    }, 5000);
     return () => clearTimeout(timer);
   }, []);
 const leaderDivClasses = ["firstPlace", "secondPlace", "thirdPlace", "otherPlace"]

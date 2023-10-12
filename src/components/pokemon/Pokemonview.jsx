@@ -25,7 +25,7 @@ function PokemonView({ p }) {
         flexDirection: "column",
       }}
     >
-      <Link to={`/pokemon/${p.id}`}>
+      <Link to={`/pokemon/${p.id}`} >
         <Card
           onMouseEnter={playSound}
           hoverable

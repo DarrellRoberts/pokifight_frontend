@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 
-export default function PokemonTitle({ pokemon }) {
+export default function PokemonTitle({ pokemon, username }) {
   const { id } = useParams();
   let path = window.location.pathname;
   return (
     <>
       {path === "/pokemon" ? (
         <h1 style={{ textAlign: "center", color: "white", fontSize: "5rem" }}>
-          Select your Pokemon!
+          {username}, <br/> Select your Pokemon!
         </h1>
       ) : null}
       {path === `/pokemon/${id}` ? (
