@@ -1,5 +1,5 @@
 import { Card, Button, Space } from "antd";
-import { DoubleLeftOutlined } from "@ant-design/icons"
+import { DoubleLeftOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SinglePokemon from "./SinglePokemon";
@@ -69,34 +69,52 @@ export default function Randomiser({ pokemon }) {
   };
   return (
     <>
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "0% 0%",
-      }}
-      className="randomiser"
-    >
-      {show && !opponentSelect ? (
-        <Space className="site-button-ghost-wrapper" wrap>
-          <Button
-            onClick={randomiser}
-            type="primary"
-            danger
-            style={{ marginBottom: "5%" }}
-          >
-            Choose your opponent!
-          </Button>
-        </Space>
-      ) : null}
-      {imageId === 0 ? (
-        <Link>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "0% 0%",
+        }}
+        className="randomiser"
+      >
+        {show && !opponentSelect ? (
+          <Space className="site-button-ghost-wrapper" wrap>
+            <Button
+              onClick={randomiser}
+              type="primary"
+              danger
+              style={{ marginBottom: "5%" }}
+            >
+              Choose your opponent!
+            </Button>
+          </Space>
+        ) : null}
+        {imageId === 0 ? (
+          <Link>
+            <Card
+              className="opponentCard"
+              hoverable
+              style={{ width: 300 }}
+              cover={
+                <img
+                  alt={randomPoke[imageId - 1]?.name.english}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`}
+                />
+              }
+            >
+              <Meta
+                title={randomPoke[imageId - 1]?.name.english}
+                description="Info"
+              />
+            </Card>
+          </Link>
+        ) : (
           <Card
             className="opponentCard"
             hoverable
-            style={{ width: 300 }}
+            style={{ width: 300, marginBottom: "10%" }}
             cover={
               <img
                 alt={randomPoke[imageId - 1]?.name.english}
@@ -106,121 +124,97 @@ export default function Randomiser({ pokemon }) {
           >
             <Meta
               title={randomPoke[imageId - 1]?.name.english}
-              description="Info"
+              description={randomPoke[imageId - 1]?.type[0]}
             />
-          </Card>
-        </Link>
-      ) : (
-        <Card
-          className="opponentCard"
-          hoverable
-          style={{ width: 300, marginBottom: "10%" }}
-          cover={
-            <img
-              alt={randomPoke[imageId - 1]?.name.english}
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imageId}.png`}
-            />
-          }
-        >
-          <Meta
-            title={randomPoke[imageId - 1]?.name.english}
-            description={randomPoke[imageId - 1]?.type[0]}
-          />
-          <br />
-          <div className="stats" style={{ display: "grid" }}>
-            <label>
-              Health
-              <input
-                type="range"
-                max="200"
-                value={randomPoke[imageId - 1]?.base.HP}
-              />
-            </label>
-            <label>
-              {" "}
-              Attack
-              <input
-                type="range"
-                max="200"
-                value={randomPoke[imageId - 1]?.base.HP}
-              />
-            </label>
-            <label>
-              {" "}
-              Defence
-              <input
-                type="range"
-                max="200"
-                value={randomPoke[imageId - 1]?.base.Defense}
-              />
-            </label>
-            <label>
-              {" "}
-              Speed
-              <input
-                type="range"
-                max="200"
-                value={randomPoke[imageId - 1]?.base.Speed}
-              />
-            </label>
             <br />
-            <label>
-              {" "}
-              Special Defence🛡️
-              <input
-                type="range"
-                max="100"
-                value={randomPoke[imageId - 1]?.base["Sp. Defense"]}
-              />
-            </label>
-            <label>
-              {" "}
-              Special Attack⚔️
-              <input
-                type="range"
-                max="100"
-                value={randomPoke[imageId - 1]?.base["Sp. Attack"]}
-              />
-            </label>
-            <br />
-          </div>
-          {!opponentSelect ? (
-            <Button
-              onClick={() => {
-                handleData();
-                handleOpponentSelect();
-              }}
-              danger
-              style={{ marginBottom: "5%" }}
-            >
-              +
-            </Button>
-          ) : (
-            <>
-            <Button onClick={handleOpponentSelect} type="primary" danger>
-              Opponent Selected!
-            </Button>
-            <span>
-            <Link
-            to="/pokemon/game"
-            >
+            <div className="stats" style={{ display: "grid" }}>
+              <label>
+                Health
+                <input
+                  type="range"
+                  max="200"
+                  value={randomPoke[imageId - 1]?.base.HP}
+                />
+              </label>
+              <label>
+                {" "}
+                Attack
+                <input
+                  type="range"
+                  max="200"
+                  value={randomPoke[imageId - 1]?.base.HP}
+                />
+              </label>
+              <label>
+                {" "}
+                Defence
+                <input
+                  type="range"
+                  max="200"
+                  value={randomPoke[imageId - 1]?.base.Defense}
+                />
+              </label>
+              <label>
+                {" "}
+                Speed
+                <input
+                  type="range"
+                  max="200"
+                  value={randomPoke[imageId - 1]?.base.Speed}
+                />
+              </label>
+              <br />
+              <label>
+                {" "}
+                Special Defence🛡️
+                <input
+                  type="range"
+                  max="100"
+                  value={randomPoke[imageId - 1]?.base["Sp. Defense"]}
+                />
+              </label>
+              <label>
+                {" "}
+                Special Attack⚔️
+                <input
+                  type="range"
+                  max="100"
+                  value={randomPoke[imageId - 1]?.base["Sp. Attack"]}
+                />
+              </label>
+              <br />
+            </div>
+            {!opponentSelect ? (
               <Button
-            primary
-            danger
-            style={{marginTop: "5%"}}
-            > 
-            Start Game🎮
-            </Button>
-            </Link>
-            <DoubleLeftOutlined
-            className="arrow"
-            />
-            </span>
-          </>
-          )}
-        </Card>
-      )}
-    </div>
+                onClick={handleOpponentSelect}
+                danger
+                style={{ marginBottom: "5%" }}
+              >
+                +
+              </Button>
+            ) : (
+              <>
+                <Button onClick={handleOpponentSelect} type="primary" danger>
+                  Opponent Selected!
+                </Button>
+                <span>
+                  <Link to="/pokemon/game">
+                    <Button
+                      onClick={handleData}
+                      primary
+                      danger
+                      style={{ marginTop: "5%" }}
+                    >
+                      Start Game🎮
+                    </Button>
+                  </Link>
+                  <DoubleLeftOutlined className="arrow" />
+                </span>
+              </>
+            )}
+          </Card>
+        )}
+      </div>
     </>
   );
 }

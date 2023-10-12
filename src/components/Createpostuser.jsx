@@ -2,7 +2,8 @@ import { useEffect } from "react";
 
 const PostUsername = async (username) => {
   console.log(username);
-  const URL = "https://pokemon-backend-ydlf.onrender.com/api/pokemon/username";
+  const URL =
+    "https://pokemon-backend-ydlf.onrender.com/api/pokemon/game/save/username";
   const fetchURL = await fetch(URL, {
     method: "POST",
     headers: {
