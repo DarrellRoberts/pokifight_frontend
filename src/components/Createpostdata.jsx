@@ -2,7 +2,8 @@ import { useEffect } from "react";
 
 const CreatePostPokemonForBattle = async (pokemonSelected, pokemonOpponent) => {
   console.log(pokemonSelected, pokemonOpponent);
-  const URL = "https://pokemon-backend-ydlf.onrender.com/api/pokemon/fight";
+  const URL = "https://pokemon-backend-ydlf.onrender.com/api/pokemon/game/save";
+
   const fetchURL = await fetch(URL, {
     method: "POST",
     headers: {
