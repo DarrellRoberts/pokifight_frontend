@@ -34,6 +34,7 @@ export default function Leaderboard() {
     return () => clearTimeout(timer);
   }, []);
 const leaderDivClasses = ["firstPlace", "secondPlace", "thirdPlace", "otherPlace"]
+const medalArray = ["🥇", "🥈", "🥉"]
 const sortedLeaderboard = infoAll.sort((a,b) => b.points-a.points)
 console.log(infoAll);
   return (
@@ -73,7 +74,7 @@ console.log(infoAll);
                   <>
                     <div 
                         key={index}
-                        className={leaderDivClasses[index]}
+                        className={leaderDivClasses[index >=3 ? 3 : index]}
                         style={{
                         width: "75%",
                         margin: "2%",
@@ -94,12 +95,8 @@ console.log(infoAll);
                         }}
                       >
                         <li
-                          style={{
-                            color: "white",
-                            textShadow: "2px 2px 3px rgb(6, 37, 211)",
-                          }}
                         >
-                          🥇{info.username}
+                          {medalArray[index]}{info.username}
                         </li>
                       </ul>
                       <ul
