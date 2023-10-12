@@ -6,6 +6,7 @@ import SinglePokemon from "./SinglePokemon";
 import { Howl } from "howler";
 import Roulette from "../../assets/roulette.wav";
 import CreatePostPokemonForBattle from "../Createpostdata";
+import Game from "../game/Game";
 
 export default function Randomiser({ pokemon }) {
   const [imageId, setImageId] = useState(0);
@@ -198,7 +199,7 @@ export default function Randomiser({ pokemon }) {
                   Opponent Selected!
                 </Button>
                 <span>
-                  <Link to="/pokemon/game">
+                  <Link to="/pokemon/game" element={<Game/>}>
                     <Button
                       onClick={handleData}
                       primary

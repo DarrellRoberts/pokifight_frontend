@@ -9,7 +9,7 @@ import Fightnoise from "../../assets/fightnoise.mp3";
 import Fightvoice from "../../assets/fightvoice.wav";
 import Skullicon from "../../assets/skullicon.png"
 
-export default function Game({ username }) {
+export default function Game() {
   const [player, setPlayer] = useState([]);
   const [result, setResult] = useState([]);
   const [start, setStart] = useState(true);
@@ -17,7 +17,16 @@ export default function Game({ username }) {
   const [smoke, setSmoke] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
   const [gameover, setGameOver] = useState(false);
-  const user = username;
+  const [username, setUsername] = useState("");
+
+const fetchUsername = async () => {
+  const data = await fetch(
+    "https://pokemon-backend-ydlf.onrender.com/api/pokemon/game/save/username"
+  );
+  const res = await data.json();
+  setUsername(res);
+}
+  const user = username.username;
   const fetchPlayer = async () => {
     const data = await fetch(
       "https://pokemon-backend-ydlf.onrender.com/api/pokemon/fight"
@@ -84,7 +93,8 @@ export default function Game({ username }) {
   };
 
   useEffect(() => {
-    fetchPlayer(); 
+    fetchPlayer();
+    fetchUsername(); 
     fetchResult();
   }, []);
 
@@ -324,7 +334,7 @@ export default function Game({ username }) {
                 </li>
               </div>
             </div>
-            {gameover && result.winner.english === player[1]?.pokemonOpponent.name.english ? <img style={{position: "absolute", zIndex: 2, opacity: "80%", filter: "contrast(0)"}} width="300px" src={Skullicon} alt="skull"/> :null}
+            {gameover && result.loser === 1 ? <img style={{position: "absolute", zIndex: 2, opacity: "80%", filter: "contrast(0)"}} width="300px" src={Skullicon} alt="skull"/> :null}
             <img
               className={`playerImage ${startAnimation ? "animate" : ""}`}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${player[0]?.pokemonSelected.id}.png`}
@@ -366,12 +376,12 @@ export default function Game({ username }) {
                 Game Over
               </h2>
               
-              {result.winner.english === player[0]?.pokemonSelected.name.english ?
+              {result.winner === 1 ?
               <>
-              <h2 style={{ marginBottom: "0px"}}>{result.winner.english} Wins!</h2>
+              <h2 style={{ marginBottom: "0px"}}>{user} Wins!</h2>
               <h2 style={{ marginBottom: "0px" }}>Points: {result.points}</h2>
               </> 
-              : <h2 style={{color: "white", textShadow: "2px 20px 35px rgb(211, 6, 6)"}}>You lose!</h2>}
+              : <h2 style={{color: "white", textShadow: "2px 20px 35px rgb(211, 6, 6)"}}>{user}, you lose!</h2>}
 
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "3rem"}}>
                 <Link to="/leaderboard">
@@ -543,7 +553,7 @@ export default function Game({ username }) {
                 </li>
               </div>
             </div>
-            {gameover && result.winner.english === player[0]?.pokemonSelected.name.english ? <img style={{position: "absolute", zIndex: 2, opacity: "80%", filter: "contrast(0)"}} width="300px" src={Skullicon} alt="skull"/> : null}
+            {gameover && result.winner === 1 ? <img style={{position: "absolute", zIndex: 2, opacity: "80%", filter: "contrast(0)"}} width="300px" src={Skullicon} alt="skull"/> : null}
             <img
               className={`opponentImage ${startAnimation ? "animate" : ""}`}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${player[1]?.pokemonOpponent.id}.png`}

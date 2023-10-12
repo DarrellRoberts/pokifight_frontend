@@ -11,6 +11,15 @@ const [pokemon, setPokemon] = useState([]);
 const [totalPages, setTotalPages] = useState(0);
 const [itemOffset, setItemOffset] = useState(0);
 const [isLoading, setIsLoading] = useState(true);
+const [username, setUsername] = useState("");
+
+const fetchUsername = async () => {
+  const data = await fetch(
+    "https://pokemon-backend-ydlf.onrender.com/api/pokemon/game/save/username"
+  );
+  const res = await data.json();
+  setUsername(res);
+}
 
 const fetchData = async () => {
 if (searchBar) {
@@ -30,7 +39,7 @@ const data = await fetch(
 };
 
   useEffect(() => {
-    fetchData();
+    fetchData(); fetchUsername();
   }, [searchBar, itemOffset, PokemonPerPage]);
 
 const handleChange = (page) => {
@@ -46,10 +55,11 @@ const handleChange = (page) => {
     useEffect(() => {
       const timer = setTimeout(() => {
         setIsLoading(false);
-      }, 2000);
+      }, 5000);
       return () => clearTimeout(timer);
     }, []);
-
+let user = username.username;
+console.log(user);
     return (
         <>
             <div
@@ -72,7 +82,7 @@ const handleChange = (page) => {
         }}
       >
         <SearchBar setSearchBar={setSearchBar} />
-        <PokemonTitle />
+        <PokemonTitle username={user} />
         <br />
         {isLoading ? <Spinner /> : null}
         {pokemon.length > 0 && !isLoading
