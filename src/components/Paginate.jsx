@@ -71,8 +71,8 @@ const handleChange = (page) => {
           marginBottom: "10px",
         }}
       >
-        <PokemonTitle />
         <SearchBar setSearchBar={setSearchBar} />
+        <PokemonTitle />
         <br />
         {isLoading ? <Spinner /> : null}
         {pokemon.length > 0 && !isLoading

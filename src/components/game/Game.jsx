@@ -7,15 +7,17 @@ import { Howl } from "howler";
 import Smoke from "../../assets/smoke.png";
 import Fightnoise from "../../assets/fightnoise.mp3";
 import Fightvoice from "../../assets/fightvoice.wav";
+import Skullicon from "../../assets/skullicon.png"
 
-export default function Game() {
+export default function Game({ username }) {
   const [player, setPlayer] = useState([]);
-  const [username, setUsername] = useState([]);
+  const [result, setResult] = useState([]);
   const [start, setStart] = useState(true);
   const [timer, setTimer] = useState("Start");
   const [smoke, setSmoke] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
   const [gameover, setGameOver] = useState(false);
+  const user = username;
   const fetchPlayer = async () => {
     const data = await fetch(
       "https://pokemon-backend-ydlf.onrender.com/api/pokemon/fight"
@@ -23,12 +25,13 @@ export default function Game() {
     const res = await data.json();
     setPlayer(res);
   };
-  const fetchUsername = async () => {
+
+  const fetchResult = async () => {
     const data = await fetch(
-      "https://pokemon-backend-ydlf.onrender.com/api/pokemon/username"
+      "https://pokemon-backend-ydlf.onrender.com/api/pokemon/game/result"
     );
     const res = await data.json();
-    setUsername(res);
+    setResult(res.dataStore.result);
   };
 
   const playCountdown = () => {
@@ -81,7 +84,8 @@ export default function Game() {
   };
 
   useEffect(() => {
-    fetchPlayer();
+    fetchPlayer(); 
+    fetchResult();
   }, []);
 
   const handleStartAnimation = () => {
@@ -145,8 +149,10 @@ export default function Game() {
     }, 10000);
     return () => clearTimeout(time);
   };
-  console.log(username);
+  
+  console.log(user);
   console.log(player);
+  console.log(result);
   return (
     <>
       {start ? (
@@ -318,6 +324,7 @@ export default function Game() {
                 </li>
               </div>
             </div>
+            {gameover && result.winner.english === player[1]?.pokemonOpponent.name.english ? <img style={{position: "absolute", zIndex: 2, opacity: "80%", filter: "contrast(0)"}} width="300px" src={Skullicon} alt="skull"/> :null}
             <img
               className={`playerImage ${startAnimation ? "animate" : ""}`}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${player[0]?.pokemonSelected.id}.png`}
@@ -347,20 +354,34 @@ export default function Game() {
                 display: "flex",
                 flexDirection: "column",
                 height: "85vh",
-                justifyContent: "flex-end",
+                justifyContent: "center",
+                alignItems: "center",
                 fontSize: "3rem",
+                backgroundColor: "rgb(50,50,50, 0.8)",
+                borderRadius: "20px"
               }}
             >
-              <h2 style={{ marginBottom: "0px" }}>Username Wins!</h2>
-              <h2 style={{ marginBottom: "0px", textAlign: "center" }}>
+              
+            <h2 style={{ marginBottom: "0px", textAlign: "center", textDecoration: "underline"}}>
                 Game Over
               </h2>
-              <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+              
+              {result.winner.english === player[0]?.pokemonSelected.name.english ?
+              <>
+              <h2 style={{ marginBottom: "0px"}}>{result.winner.english} Wins!</h2>
+              <h2 style={{ marginBottom: "0px" }}>Points: {result.points}</h2>
+              </> 
+              : <h2 style={{color: "white", textShadow: "2px 20px 35px rgb(211, 6, 6)"}}>You lose!</h2>}
+
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "3rem"}}>
                 <Link to="/leaderboard">
                   <Button type="primary">Leaderboard</Button>
                 </Link>
                 <Link to={`/pokemon/${player[0]?.pokemonSelected.id}`}>
                   <Button type="primary">Play again</Button>
+                </Link>
+                <Link to={`/pokemon`}>
+                  <Button type="primary">Browse Pokemon</Button>
                 </Link>
               </div>
             </div>
@@ -522,7 +543,7 @@ export default function Game() {
                 </li>
               </div>
             </div>
-
+            {gameover && result.winner.english === player[0]?.pokemonSelected.name.english ? <img style={{position: "absolute", zIndex: 2, opacity: "80%", filter: "contrast(0)"}} width="300px" src={Skullicon} alt="skull"/> : null}
             <img
               className={`opponentImage ${startAnimation ? "animate" : ""}`}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${player[1]?.pokemonOpponent.id}.png`}
