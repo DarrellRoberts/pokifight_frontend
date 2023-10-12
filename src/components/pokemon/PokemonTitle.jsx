@@ -7,7 +7,7 @@ export default function PokemonTitle({ pokemon, username }) {
     <>
       {path === "/pokemon" ? (
         <h1 style={{ textAlign: "center", color: "white", fontSize: "5rem" }}>
-          {username}, Select your Pokemon!
+          {username}, <br/> Select your Pokemon!
         </h1>
       ) : null}
       {path === `/pokemon/${id}` ? (
