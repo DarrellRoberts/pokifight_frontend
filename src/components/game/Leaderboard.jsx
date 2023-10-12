@@ -10,7 +10,7 @@ export default function Leaderboard() {
     const data = await fetch(URL);
     const res = await data.json();
     if (res) {
-      setAllInfo(res);
+      setAllInfo(res.results);
       //   console.log(res);
     }
   };
@@ -33,7 +33,9 @@ export default function Leaderboard() {
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
-
+const leaderDivClasses = ["firstPlace", "secondPlace", "thirdPlace", "otherPlace"]
+const sortedLeaderboard = infoAll.sort((a,b) => b.points-a.points)
+console.log(infoAll);
   return (
     <>
       <h1 style={{ color: "white", fontSize: "10rem", textAlign: "center" }}>
@@ -66,12 +68,13 @@ export default function Leaderboard() {
             <Spinner />
           ) : (
             <>
-              {infoAll.results &&
-                infoAll.results.map((info) => (
+              {infoAll &&
+                infoAll.map((info, index) => (
                   <>
-                    <div
-                      className="firstPlace"
-                      style={{
+                    <div 
+                        key={index}
+                        className={leaderDivClasses[index]}
+                        style={{
                         width: "75%",
                         margin: "2%",
                         paddingRight: "10%",
