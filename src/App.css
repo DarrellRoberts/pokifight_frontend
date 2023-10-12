@@ -259,6 +259,11 @@ width: "40%";
 padding: "0px";
 }
 
+.leaderboardContainer .firstPlace .leftUl, .secondPlace .leftUl, .thirdPlace .leftUl {
+  color: white;
+  text-shadow: 2px 2px 3px rgb(6, 37, 211);
+}
+
 .leaderboardContainer li {
   font-size: 2rem;
   margin: 5%;
