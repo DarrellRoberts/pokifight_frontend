@@ -1,9 +1,12 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Card, Button, Space } from "antd";
 import PokemonTitle from "./PokemonTitle";
 import Randomiser from "./Randomiser";
-import Game from "../game/Game.jsx"
+import { EllipsisOutlined } from '@ant-design/icons';
+import { Divider, Tour } from 'antd';
+import Tutorialimage1 from "../../assets/tutorialimage1.jpg"
+import Tutorialimage2 from "../../assets/tutorialimage2.jpg"
 
 export default function SinglePokemon() {
   const [pokemon, setPokemon] = useState([]);
@@ -17,6 +20,41 @@ export default function SinglePokemon() {
     const res = await data.json();
     setPokemon(res);
   };
+
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const [open, setOpen] = useState(false);
+  const steps = [
+    {
+      title: 'Select your player',
+      description: 'If you are satisfied, press this button to select the pokemon',
+      target: () => ref1.current,
+    },
+    {
+      title: 'Select your opponent',
+      description: 'When you select your player, a box will open for you to select your opponent.',
+      cover: (
+        <img
+          alt="tutorialimage1.png"
+          src={Tutorialimage1}
+        />
+      ),
+      target: () => ref2.current,
+    },
+    {
+      title: 'Start game!',
+      description: 'If you are satisfied with both players, start the game here',
+      cover: (
+        <img
+          alt="tutorialimage2.png"
+          src={Tutorialimage2}
+        />
+      ),
+      target: () => ref3.current,
+    },
+  ];
+  
 
   useEffect(() => {
     fetchData();
@@ -36,7 +74,17 @@ export default function SinglePokemon() {
           width: "80%",
         }}
       >
+        {/* Tutorial */}
         <PokemonTitle pokemon={pokemon} />
+        <Button type="primary" onClick={() => setOpen(true)}>
+        Tutorial
+      </Button>
+
+      <Divider />
+
+      <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
+
+
         <div
           className="singPokeContainer"
           style={{ display: "flex", alignItems: "center" }}
@@ -110,7 +158,8 @@ export default function SinglePokemon() {
                   <br />
                   {!selected ? (
                     <Space wrap>
-                      <Button
+                      <Button 
+                      ref={ref1}
                       onClick={() => setSelect(true)}>
                         +
                       </Button>
@@ -137,7 +186,7 @@ export default function SinglePokemon() {
                 {" "}
                 Vs.
               </h2>
-              <Randomiser pokemon={pokemon} />
+              <Randomiser ref={ref2} pokemon={pokemon} />
             </>
           ) : null}
         </div>
