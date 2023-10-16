@@ -378,10 +378,10 @@ const fetchUsername = async () => {
               
               {result.winner === 1 ?
               <>
-              <h2 style={{ marginBottom: "0px"}}>{user} Wins!</h2>
-              <h2 style={{ marginBottom: "0px" }}>Points: {result.points}</h2>
+              <h2 style={{ marginBottom: "0px", textAlign: "center"}}>{user} <br/> Wins!</h2>
+              <h2 style={{ marginBottom: "0px", textAlign: "center" }}>Points: {result.points}</h2>
               </> 
-              : <h2 style={{color: "white", textShadow: "2px 20px 35px rgb(211, 6, 6)"}}>{user}, you lose!</h2>}
+              : <h2 style={{color: "white", textAlign: "center", textShadow: "2px 20px 35px rgb(211, 6, 6)"}}>{user}, <br/> you lose!</h2>}
 
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "3rem"}}>
                 <Link to="/leaderboard">

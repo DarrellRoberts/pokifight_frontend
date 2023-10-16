@@ -5,7 +5,7 @@ export default function PokemonTitle({ pokemon, username }) {
   let path = window.location.pathname;
   return (
     <>
-      {path === "/pokemon" ? (
+      {path === "/pokemon" && username ? (
         <h1 style={{ textAlign: "center", color: "white", fontSize: "5rem" }}>
           {username}, <br/> Select your Pokemon!
         </h1>
