@@ -59,7 +59,8 @@ const handleChange = (page) => {
       return () => clearTimeout(timer);
     }, []);
 let user = username.username;
-console.log(user);
+console.log(username);
+console.log(pokemon)
     return (
         <>
             <div
