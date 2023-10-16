@@ -6,12 +6,13 @@ export default function PokemonTitle({ pokemon, username }) {
   return (
     <>
       {path === "/pokemon" && username ? (
-        <h1 style={{ textAlign: "center", color: "white", fontSize: "5rem" }}>
+        <h1 className="selectPokemon" style={{ textAlign: "center", color: "white", fontSize: "5rem" }}>
           {username}, <br/> Select your Pokemon!
         </h1>
       ) : null}
       {path === `/pokemon/${id}` ? (
         <h1
+          className="selectPokemon"
           style={{
             textAlign: "center",
             color: "white",

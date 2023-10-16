@@ -15,6 +15,102 @@ body {
   padding: 0px;
 }
 
+@media screen and (max-width: 800px) {
+  /* header */
+.header {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.header a:hover {
+}
+
+.header a:active {
+  color: rgb(211, 6, 6);
+  text-shadow: 2px 20px 35px rgb(6, 37, 211);
+}
+.pokiFight{
+ font-size: 2rem !important;
+ letter-spacing: 0px;
+}
+.selectPokemon {
+  font-size: 3rem !important;
+}
+.pagination {
+  margin: 0px;
+  padding: 0px;
+  width: 300px !important;
+}
+.pagination a {
+  font-size: 0.85rem;
+}
+
+.leaderboard {
+  font-size: 2.5rem !important;
+}
+.spinner img {
+  width: 200px; 
+}
+.leaderboardContainer ul, .firstPlace, .secondPlace, .thirdPlace, .otherPlace {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.leaderboardContainer li {
+  font-size: 1.5rem !important;
+}
+.singleCard {
+  width: 200px !important;
+}
+.singPokeContainer {
+  flex-direction: column;
+}
+.opponentCard {
+  width: 200px !important;
+}
+.startTitle {
+  font-size: 5rem !important;
+}
+.arena h2 {
+  font-size: 1.5rem !important;
+}
+.statsGrid {
+  width: 0px;
+  height: 0px;
+  display: none;
+}
+.grid-item {
+  display: none;
+}
+.playerImage {
+  width: 200px;
+}
+.opponentImage {
+  width: 200px;
+}
+.playerCon {
+  margin: 0px !important;
+  padding: 0px;
+}
+.gameOverCon {
+  height: 50vh !important;
+  position: absolute;
+  left: 30%;
+}
+.skullImage {
+  width: 150px !important;
+}
+.smokeImage {
+  width: 300px !important;
+  top: 10% !important;
+  position:absolute;
+}
+tutorialButton {
+  display: none;
+}
+}
+
 .homeContainer {
   background-image: url("./assets/wallpaper.jpg");
   background-repeat: no-repeat;
@@ -28,6 +124,12 @@ body {
 h1 {
   font-family: "Russo One";
   text-shadow: 2px 20px 35px rgb(6, 37, 211);
+}
+
+.pokiFight {
+  color: #FFF;
+  letter-spacing: 20px;
+  font-size: 5rem;
 }
 
 /* paginate */
