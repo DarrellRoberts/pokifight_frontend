@@ -366,7 +366,7 @@ const fetchUsername = async () => {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                height: "85vh",
+                // height: "85vh",
                 justifyContent: "center",
                 alignItems: "center",
                 fontSize: "3rem",
