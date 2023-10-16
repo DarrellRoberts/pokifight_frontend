@@ -76,7 +76,7 @@ export default function SinglePokemon() {
       >
         {/* Tutorial */}
         <PokemonTitle pokemon={pokemon} />
-        <Button type="primary" onClick={() => setOpen(true)}>
+        <Button className="tutorialButton" type="primary" onClick={() => setOpen(true)}>
         Tutorial
       </Button>
 
@@ -99,6 +99,7 @@ export default function SinglePokemon() {
             >
               <Card
                 hoverable
+                className="singleCard"
                 style={{ width: 300 }}
                 cover={
                   <img

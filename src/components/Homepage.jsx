@@ -32,7 +32,7 @@ useEffect(() => {
           flexDirection: "column",
         }}
       >
-        <h1 style={{ color: "#FFF", letterSpacing: "20px", fontSize: "5rem" }}>
+        <h1 className="pokiFight">
           Pokifight
         </h1>
         {!clicked ? (

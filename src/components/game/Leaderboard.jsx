@@ -39,7 +39,7 @@ const sortedLeaderboard = infoAll.sort((a,b) => b.points-a.points)
 console.log(infoAll);
   return (
     <>
-      <h1 style={{ color: "white", fontSize: "10rem", textAlign: "center" }}>
+      <h1 className="leaderboard" style={{ color: "white", fontSize: "10rem", textAlign: "center" }}>
         Leaderboard
       </h1>
       <div

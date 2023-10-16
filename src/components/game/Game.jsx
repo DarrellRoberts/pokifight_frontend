@@ -168,6 +168,7 @@ const fetchUsername = async () => {
       {start ? (
         <div style={{ display: "flex", justifyContent: "center" }}>
           <h1
+            className="startTitle"
             onClick={handleTimer}
             style={{
               color: "white",
@@ -190,6 +191,7 @@ const fetchUsername = async () => {
             </h2>
 
             <div
+              className="statsGrid"
               style={{
                 backgroundColor: "rgb(50,50,50, 0.8)",
                 display: "grid",
@@ -334,7 +336,7 @@ const fetchUsername = async () => {
                 </li>
               </div>
             </div>
-            {gameover && result.loser === 1 ? <img style={{position: "absolute", zIndex: 2, opacity: "80%", filter: "contrast(0)"}} width="300px" src={Skullicon} alt="skull"/> :null}
+            {gameover && result.loser === 1 ? <img className="skullImage" style={{position: "absolute", zIndex: 2, opacity: "80%", filter: "contrast(0)"}} width="300px" src={Skullicon} alt="skull"/> :null}
             <img
               className={`playerImage ${startAnimation ? "animate" : ""}`}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${player[0]?.pokemonSelected.id}.png`}
@@ -355,11 +357,12 @@ const fetchUsername = async () => {
                 zIndex: "2",
               }}
             >
-              <img src={Smoke} alt="smoke" width="800px" />
+              <img className="smokeImage" src={Smoke} alt="smoke" width="800px" />
             </div>
           ) : null}
           {gameover ? (
             <div
+            className="gameOverCon"
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -403,6 +406,7 @@ const fetchUsername = async () => {
             </h2>
 
             <div
+            className="statsGrid"
               style={{
                 backgroundColor: "rgb(50,50,50, 0.8)",
                 display: "grid",
@@ -416,6 +420,7 @@ const fetchUsername = async () => {
               <div className="grid-item">
                 <Space wrap>
                   <Progress
+                    className="progressCircle"
                     type="circle"
                     showInfo={false}
                     strokeColor="red"
@@ -553,7 +558,7 @@ const fetchUsername = async () => {
                 </li>
               </div>
             </div>
-            {gameover && result.winner === 1 ? <img style={{position: "absolute", zIndex: 2, opacity: "80%", filter: "contrast(0)"}} width="300px" src={Skullicon} alt="skull"/> : null}
+            {gameover && result.winner === 1 ? <img className="skullImage" style={{position: "absolute", zIndex: 2, opacity: "80%", filter: "contrast(0)"}} width="300px" src={Skullicon} alt="skull"/> : null}
             <img
               className={`opponentImage ${startAnimation ? "animate" : ""}`}
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${player[1]?.pokemonOpponent.id}.png`}
