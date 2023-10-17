@@ -35,7 +35,7 @@ export default function Form() {
       placeholder="Enter your username"
       allowClear
       value={username}
-      enterButton="Search"
+      enterButton="Submit"
       size="large"
       onChange={handleUsername}
     />
