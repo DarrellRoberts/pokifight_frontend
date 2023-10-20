@@ -65,7 +65,7 @@ console.log(infoAll);
             marginBottom: "10px",
           }}
         >
-          {isLoading ? (
+          {infoAll.length <= 0 ? (
             <Spinner />
           ) : (
             <>

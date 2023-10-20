@@ -4,7 +4,7 @@ export default function Spinner() {
     return (
         <>
               <div className="spinner">
-              <img src={PokemonImage} alt="pokemon_logo" width="500px" />
+              <img src={PokemonImage} alt="pokemon_logo" width="400px" />
               </div>
       </>
     )
