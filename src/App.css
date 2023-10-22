@@ -109,6 +109,21 @@ body {
 tutorialButton {
   display: none;
 }
+:where(.css-dev-only-do-not-override-pr0fja).ant-tour .ant-tour-inner {
+  width: 50%;
+  position: relative;
+  top: 50%;
+  }
+:where(.css-pr0fja).ant-tour .ant-tour-inner {
+    width: 50%;
+  }
+  rect {
+    height: 200vh;
+  }
+  .ant-tour-placeholder-animated {
+    height: 50px !important;
+    y: 855;
+  }
 }
 
 .homeContainer {
