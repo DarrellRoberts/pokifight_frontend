@@ -120,10 +120,10 @@ tutorialButton {
   rect {
     height: 200vh;
   }
-  .ant-tour-placeholder-animated {
+  /* .ant-tour-placeholder-animated {
     height: 50px !important;
     y: 855;
-  }
+  } */
 }
 
 .homeContainer {
