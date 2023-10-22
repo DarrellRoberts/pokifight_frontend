@@ -39,7 +39,12 @@ const data = await fetch(
 };
 
   useEffect(() => {
-    fetchData(); fetchUsername();
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
+    fetchData();
+    fetchUsername();
+    return () => clearTimeout(timer);
   }, [searchBar, itemOffset, PokemonPerPage]);
 
 const handleChange = (page) => {
@@ -51,13 +56,6 @@ const handleChange = (page) => {
       );
       setItemOffset(newOffset);
     };
-
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 5000);
-      return () => clearTimeout(timer);
-    }, []);
 let user = username.username;
 console.log(username);
 console.log(pokemon)
@@ -83,21 +81,19 @@ console.log(pokemon)
         }}
       >
         <SearchBar setSearchBar={setSearchBar} />
-        <PokemonTitle username={user} />
         <br />
-        {isLoading ? <Spinner /> : null}
-        {pokemon.length > 0 && !isLoading
-          ? pokemon.map((p, index) => (
+        {!username && pokemon-length <= 0 ? <Spinner /> : (
+          <>
+          <PokemonTitle username={user} /> 
+        {pokemon.map((p, index) => (
               <div
                 style={{ display: "inline-flex", margin: "20px" }}
                 key={index}
               >
                 <PokemonView p={p} />
               </div>
-            ))
-          : searchBar
-          ? "No result found"
-          : null}
+            ))}
+         </>)}
           </div>
           <div className="page">
         <ReactPaginate

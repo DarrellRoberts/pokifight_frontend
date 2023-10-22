@@ -8,6 +8,7 @@ import Smoke from "../../assets/smoke.png";
 import Fightnoise from "../../assets/fightnoise.mp3";
 import Fightvoice from "../../assets/fightvoice.wav";
 import Skullicon from "../../assets/skullicon.png"
+import Spinner from "../Spinner";
 
 export default function Game() {
   const [player, setPlayer] = useState([]);
@@ -18,6 +19,7 @@ export default function Game() {
   const [startAnimation, setStartAnimation] = useState(false);
   const [gameover, setGameOver] = useState(false);
   const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(true);
 
 const fetchUsername = async () => {
   const data = await fetch(
@@ -93,9 +95,13 @@ const fetchUsername = async () => {
   };
 
   useEffect(() => {
-    fetchPlayer();
-    fetchUsername(); 
-    fetchResult();
+    const time = setTimeout(() => {
+      setLoading(false);
+      fetchPlayer();
+      fetchUsername(); 
+      fetchResult();
+    }, 5000);
+    return () => clearTimeout(time)
   }, []);
 
   const handleStartAnimation = () => {
@@ -165,8 +171,17 @@ const fetchUsername = async () => {
   console.log(result);
   return (
     <>
+    {player.length <= 0 && result.length <= 0 && username.length <= 0 ? 
+    (
+      <>
+      <Spinner />
+      <div  className="spinnerDiv" style={{ display: "flex", justifyContent: "center", backgroundColor: "grey", height: "100vh", position: "absolute", right: "50%", zIndex: "5", opacity: "1" }}>
+      </div>
+      </>
+    )
+    : null}
       {start ? (
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ display: player.length <= 0 && result.length <= 0 && username.length <= 0 ? "none" : "flex", justifyContent: "center" }}>
           <h1
             className="startTitle"
             onClick={handleTimer}
