@@ -82,7 +82,7 @@ console.log(pokemon)
       >
         <SearchBar setSearchBar={setSearchBar} />
         <br />
-        {!username && pokemon-length <= 0 ? <Spinner /> : (
+        {username.length <= 0 && pokemon.length <= 0 ? <Spinner /> : (
           <>
           <PokemonTitle username={user} /> 
         {pokemon.map((p, index) => (
