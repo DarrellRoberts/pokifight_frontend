@@ -1,6 +1,6 @@
 # Pokifight
 
-This is a game created by myself and Shadoust (eshah64).
+This is a pokemon game created by myself and Shadoust (eshah64).
 
 We used React.js library in the Frontend and the Express.js framework in the Backend.
 
