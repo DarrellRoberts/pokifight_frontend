@@ -8,19 +8,19 @@ We wrote this app in predominantly JavaScript.
 
 See below for screenshots of the project (deployed on both nectlify and render):
 
-Enter Username
+**Enter Username**
 ![enter username](./src/assets/enterusername.jpg)
 
-Select your Pokemon (over 800 to choose from)
+**Select your Pokemon (over 800 to choose from)**
 ![homepage](./src/assets/homepage.jpg)
 
-Select Opponent
+**Select Opponent**
 ![selectopponent](./src/assets/opponentselect.jpg)
 
-Fighting screen
+**Fighting screen**
 ![fight](./src/assets/fight.jpg)
 
-Leaderboard
+**Leaderboard**
 ![leaderboard](./src/assets/leaderboard.jpg)
 
 Cheers,
